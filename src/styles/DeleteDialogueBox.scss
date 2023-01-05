@@ -1,0 +1,111 @@
+@import "./style.scss";
+
+.confirmation-box-background
+{
+
+    @include background;
+
+    .display-pop-up
+    {
+      @include pop-up;
+      .confirmation-button-flex
+      {
+        @include button-flex;
+        justify-content: center;
+        .confirmation-button
+        {
+        @include button-style;
+        padding:5px;
+         width:35%;
+         
+         cursor: pointer;
+         &.add-color
+        {
+          background-color: red;
+        }
+        }
+        
+      }
+    }
+    
+  }   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// @import "./style.scss";
+// .cofirmation-box-background
+// {
+//     @include background;
+//     .display-pop-up
+//     {
+//       background-color:white ;
+//       color: black;
+//       z-index:10;
+//       width:35%;
+//       padding:30px 50px 30px 50px;
+//       text-align: center;
+//       display: flex;
+//       flex-direction: column;
+//       gap:20px;
+//       box-shadow: 0px 4px 11px $pink;
+//       border-radius: 10px;
+    
+//     .confirmation-button-flex
+//     {
+//         @include button-flex;
+//         .confirmation-button
+//         {
+//         padding:5px;
+//          width:35%;
+//          border-radius: 4px;
+//          cursor: pointer;
+//         }
+//         &.add-color
+//         {
+//         background-color: blueviolet;
+//             &:hover{
+//                 background-color: red; 
+//             }
+//         }
+//         &:hover{
+//             background-color: $pink;
+//             color:white;
+//          }
+//     }
+// }
+// }

@@ -1,0 +1,95 @@
+@import "react-datepicker/dist/react-datepicker.css";
+@import "react-datetime-picker/dist/DateTimePicker.css";
+@import "react-calendar/dist/Calendar.css";
+@import "react-clock/dist/Clock.css";
+@import "./style.scss";
+
+.add-events-background
+{
+    @include background;
+    z-index:20;
+
+}    
+.add-events
+{
+    @include pop-up;
+    // box-shadow: 0px 4px 11px rgba(118,172,153,255);
+    top:230px;
+    position: fixed;
+    left: 500px;
+    width: max-content;
+    text-align: center;
+    align-items: center;
+    font-size: 16px;
+    height: max-content;
+   
+    .text-area
+    {
+        outline: none;
+        color:black;
+        border: 1px solid grey;
+        background-color: white;
+        border-radius: 4px;
+        padding: 10px;
+        max-width:fit-content;
+        resize:none;
+    }
+    .button-flex
+    {
+        @include button-flex;
+        .close-button
+        {
+           @include button-style;
+        }
+        .cancel-button
+            {
+        @extend .close-button;
+        background-color: red;
+        }
+    }
+    .plus-icon
+    {
+        text-align: center;
+        border:1px solid grey;
+        background-color: white;
+        height:50px;
+        width:50px;
+        border-radius: 50%;
+        &.fill-color
+        {
+            color: #80ea;;
+        }
+        
+    }
+    
+    .date-pick
+    {
+        display: flex;
+        flex-direction: row;
+        gap:10px;
+        align-items: center;
+         & input[type=text]
+        {
+            background-color: white;
+            color:black;
+            border:1px solid grey;
+            width:100%;
+            padding: 10px;
+        }
+        & input[type=time]
+        {
+            width:100%;
+            height: max-content;
+            padding: 7px;
+            text-align:center;
+        }
+        & input[type=datetime-local]
+        {
+            width:100%;
+            height: max-content;
+            padding: 7px;
+            text-align:center;
+        }
+    }
+}
+

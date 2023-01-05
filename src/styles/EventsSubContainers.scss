@@ -1,0 +1,25 @@
+@import "./style.scss";
+
+.card-flex
+{
+    display: flex;
+    flex-direction: row;
+    font-size: 12px;
+    // margin-bottom: 25px;
+    height: 60px;
+    color:grey;
+  
+.card{
+   
+    border-top: 1px solid grey;
+    border-left: 1px solid grey;
+    color: black;
+    // width: 75%;
+    width:95%;
+    position: absolute;
+    left: 50px;
+    height: 60px;
+    font-size: 14px;
+    
+}
+}

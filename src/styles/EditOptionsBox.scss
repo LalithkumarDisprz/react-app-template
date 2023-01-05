@@ -1,0 +1,54 @@
+@import "./style.scss";
+.edit-options-background
+{
+    @include background;
+    // position: relative;
+}
+.edit-options-container
+{
+    position: fixed;
+    @include pop-up;
+    left:500px;
+    padding: 30px;
+    top:200px;
+    justify-content: center;
+    // z-index:4;
+    color: black;
+    box-shadow: 0px 4px 11px $calender-header;
+    // transition: all 0.5s linear;
+    font-size: 16px;
+  
+        .close-icon
+        {
+            position: absolute;
+            top:20px;
+            right:20px;
+
+        }
+        .edit-options-sub-flex
+        {
+            display: flex;
+            justify-content: center;
+            gap:10px;
+        }
+    
+      .edit-update-button
+      {
+          @include button-flex;
+          justify-content: center;
+         button{
+            @include button-style;
+            border:1px solid transparent;
+            box-shadow: 0px 4px 11px black;
+            width:35%;
+            cursor: pointer;
+
+         }
+         .add-color
+         {
+            background-color: red;
+         }
+      }
+    
+}
+

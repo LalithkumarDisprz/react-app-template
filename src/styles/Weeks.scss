@@ -1,0 +1,17 @@
+@import "./Variables.scss";
+.weeks 
+{
+    display: flex;
+    flex-direction: row;
+    gap:10px;
+    justify-content: center;
+    padding:5px 25px;
+    font-size:14px;
+    color: black;
+    li
+    {
+        list-style: none;
+        width:calc(500px/7);
+        text-align: center;
+    }
+}
