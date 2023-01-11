@@ -1,33 +1,39 @@
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import "../../styles/DaysOfWeek.scss";
 import moment from "moment";
-import { useDispatch } from "react-redux";
-import { CHANGE_STATE } from "../../redux/actions";
-const DaysOfWeek = (props) => {
-  const dispatch=useDispatch();
-  const date = new Date(props.currentDate);
-  const [selectedColor,setSelectedColor] = useState(false);
+import { useDispatch, useSelector } from "react-redux";
+const DaysOfWeek = ({ changeDate, currentDate, otherDays, display }) => {
+  const dispatch = useDispatch();
+  const date = useSelector((state) => state.datereducer.date);
+  const [selectedColor, setSelectedColor] = useState(false);
   const changeNewDate = (e) => {
-      props.changeDate(e.target.value);
-    
-    
+    if (otherDays !== true) {
+      changeDate(e.target.value);
+    }
   };
-  
+
   return (
     <>
-    <input
-      className={`days-week ${props.otherDays===true ?"other-month-day":" "} ${
-        props.display===new Date().getDate() && moment(props.currentDate).month()===new Date().getMonth()&& props.otherDays===false && moment(props.currentDate).year()===new Date().getFullYear()
-          ? "today" 
-          : ""
-      }`}
-          type={"text"}
-          value={props.display}
-          onClick={changeNewDate}
-          
-          readOnly
-        />
-       
+      <input
+        className={`days-week ${otherDays === true ? "other-month-day" : " "} ${
+          display === new Date().getDate() &&
+          new Date(currentDate).getMonth() === new Date().getMonth() &&
+          otherDays === false &&
+          new Date(currentDate).getFullYear() === new Date().getFullYear()
+            ? "today"
+            : ""
+        } ${
+          parseInt(moment(date).format("D")) === display &&
+          new Date(currentDate).getMonth() === new Date(date).getMonth() &&
+          new Date(currentDate).getFullYear() === new Date(date).getFullYear()
+            ? "selected-date"
+            : " "
+        } `}
+        type={"text"}
+        value={display}
+        onClick={changeNewDate}
+        readOnly
+      />
     </>
   );
 };

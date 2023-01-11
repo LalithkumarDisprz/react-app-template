@@ -2,37 +2,43 @@
 .timeline-container
 {
    
-    width: 75%;
-    position: relative;
-    top: 100px;
-    left: 385px;
-    border: 1px solid grey;
-    
+    // width: 75%;
+    // width:88%;
+    // position: relative;
+    // top: 100px;
+    top:250px;
+    // left:5px;
+    // right:10px;
+    // left: 385px;
+    // left:20px;
+    // border: 1px solid grey;
+    margin-top: 30px;
     border-radius: 4px;
     text-align: center;
-    .timeline-header
-    {
-        background-color: $purple;
-        border:1px solid transparent;
-        border-radius:4px;
-        margin-left: -1px;
-        // box-shadow: 0px 4px 11px $calender-background;
-        padding: 15px;
-        h3
-        {
-           margin: 0px;
+    // .timeline-header
+    // {
+    //     background-color: $purple;
+    //     border:1px solid transparent;
+    //     border-radius:4px;
+    //     margin-left: -1px;
+    //     // box-shadow: 0px 4px 11px $calender-background;
+    //     padding: 15px;
+    //     color:white;
+    //     h3
+    //     {
+    //        margin: 0px;
        
-        }
+    //     }
     
-        // padding-left: 40px;
+    //     // padding-left: 40px;
     
-    }
+    // }
     .events-container
     {
         padding: 15px;
-        height: 75vh;
-    overflow-y: auto;
-    position: relative;
+        height: 60vh;
+        overflow-y: auto;
+        position: relative;
     }
     
    
@@ -41,7 +47,7 @@
 ::-webkit-scrollbar 
 {
     width: 10px;
-    height: 20px;
+    height: 5px;
     // background-color: black;
 }
 ::-webkit-scrollbar-track 

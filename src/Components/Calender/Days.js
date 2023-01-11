@@ -2,9 +2,8 @@ import moment from "moment";
 import React, { useState } from "react";
 import "../../styles/Days.scss";
 import DaysOfWeek from "./DaysOfWeek";
-const Days = (props) => {
+const Days = ({ date, changeDate }) => {
   const [currentDate, setCurrentDate] = useState(new Date());
-  const { date } = props;
   const year = new Date(date).getFullYear();
   const month = new Date(date).getMonth();
   date.setDate(1);
@@ -26,18 +25,19 @@ const Days = (props) => {
     addNextDays.push(k);
   }
   const changeNewDate = (changedDay) => {
-        props.changeDate(changedDay);
+    changeDate(changedDay);
   };
   return (
     <div className="days">
-      {addPrevDays.map((day, index) => (
+      {/* {addPrevDays.map((day, index) => (
         <DaysOfWeek
           changeDate={changeNewDate}
           currentDate={date}
           otherDays={true}
           display={day}
+          month="previous-month"
         />
-      ))}
+      ))} */}
       {addCurrentDays.map((day, index) => (
         <DaysOfWeek
           changeDate={changeNewDate}
@@ -46,14 +46,14 @@ const Days = (props) => {
           display={day}
         />
       ))}
-      {addNextDays.map((day, index) => (
+      {/* {addNextDays.map((day, index) => (
         <DaysOfWeek
           changeDate={changeNewDate}
           currentDate={date}
           otherDays={true}
           display={day}
         />
-      ))}
+      ))} */}
     </div>
   );
 };

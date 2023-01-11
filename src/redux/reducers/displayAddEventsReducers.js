@@ -1,18 +1,16 @@
-import { CHANGE_STATE,CLOSE_STATE} from "../actions";
+import { CHANGE_STATE, CLOSE_STATE } from "../actions";
 
 const initialState = {
-    displayAddEvents: false,
-  };
- function addEventsReducer(state = initialState, action) 
- {
-    switch(action.type) {
-      case CHANGE_STATE:
-        return {
-          displayAddEvents: !state.displayAddEvents,
-        };
+  displayAddEvents: false,
+};
+function addEventsReducer(state = initialState, action) {
+  switch (action.type) {
+    case CHANGE_STATE:
+      return {
+        displayAddEvents: !state.displayAddEvents,
+      };
     default:
-          return state;
-    }
+      return state;
   }
-  export default addEventsReducer;
-  
+}
+export default addEventsReducer;

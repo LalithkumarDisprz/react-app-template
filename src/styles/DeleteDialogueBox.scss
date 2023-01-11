@@ -8,6 +8,7 @@
     .display-pop-up
     {
       @include pop-up;
+      box-shadow: 0px 3px 7px $black-shadow;
       .confirmation-button-flex
       {
         @include button-flex;
@@ -15,13 +16,14 @@
         .confirmation-button
         {
         @include button-style;
+        border-color: transparent;
         padding:5px;
          width:35%;
          
          cursor: pointer;
          &.add-color
         {
-          background-color: red;
+          background-color:$red-primary;
         }
         }
         

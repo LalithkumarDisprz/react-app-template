@@ -6,5 +6,5 @@ import postreducer from "./postReducer";
 export default combineReducers({
   addEventsReducer,
   datereducer,
-  postreducer
-})
+  postreducer,
+});

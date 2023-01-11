@@ -1,48 +1,97 @@
 @import "./style.scss";
-
+// @font-face {
+//     font-family:'Galano Classic';
+//     src: url(GalanoClassic.otf);
+//   }
 .overlay
 {
     position:absolute;
-   
-    background-color:#efe7fc;
+    // font-family: "Galano Classic";
+    background-color:$secondary-blue;
     border: 1px solid transparent;
-    border-radius: 10px;
+    border-radius: 6px;
     gap:10px;
     width: 100%;
     text-align: center;
     font-size: 12px;
     z-index:4;
     padding-left: 5px;
-    // padding-top: 5px;
-    box-shadow: 0px 4px 11px $black-shadow;
-    // white-space: pre-wrap;
-    // min-height: 25px;
-    // color: white;
+    padding-bottom: 5px;
     font-weight: 700;
+    &:hover
+    {
+        cursor: pointer;
+    }
   &.overlay-hover
     {
         padding-top: 0;
+        flex-direction: row;
+
     &:hover{
-        padding-top: 5px;
+        padding: 5px;
         font-size: 10px !important;
         height: 30px  !important;
         z-index:5;
-        border-radius: 2px;
-        box-shadow: 0px 3px 9px $black-shadow;
-        background-color: $pink;
+        border-radius: 4px;
+        box-shadow: 0px 2px 8px $black-shadow;
+        // background-color: $secondary-blue;
         color:white;
     }
    }
    .contents-container
    {
-    border-left: 4px solid $purple;
+    // border-left: 4px solid $purple;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    // background-color: rgba(241,246,250,255);
+    padding-left: 10px;
+    color:$black-primary;
+    font-weight: bolder;
+   
    .contents
    {
     display: flex;
     gap:5px;
     padding-top: 5px;
     padding-left: 5px;
+   
+    align-items: center;
+    &.time-font-style
+    {
+        color:$grey-primary;
+        font-weight: 600;
+        &.time-font-less-duration
+        {
+            font-weight: 800;
+        }
+    }
+    .contents-head
+    {
+        color:#b5b9c5;
+        width:25px;
+        font-weight: 600;
+    }
+   }
+   &:hover{
+    // border-left: 4px solid $overlay-border-blue;
+    // background-color: #e6eef9;
+    font-weight: bolder;
+    color:black;
    }
 }
+.overlay-contents
+{
+    flex-direction: row;
+    color:$black-primary;
+    align-items: center;
+}
+ &.reminder-overlay
+ {
+    background-color: $yellow;
+ }
+ &.no-schedule-overlay
+ {
+    background-color: $grey-teritiary;
+ }
 }

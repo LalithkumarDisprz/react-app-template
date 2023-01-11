@@ -1,0 +1,97 @@
+@import "./style.scss";
+.timeline-top-container
+{
+    box-shadow: 0px 2px 0px $grey-light;
+    z-index:2;
+    .timeline-top-column-flex
+    {
+    
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+    align-items: center;
+    .create-event-row
+    {
+        display: flex;
+        align-items: center;
+        gap:5px;
+        .current-date-today
+        {display: flex;
+            align-items: center;
+            .current-date
+            {
+                position: absolute;
+                left: 50px;
+            }
+        .today-button
+    {
+        @include button-style;
+        color:black;
+        background-color: $yellow-primary;
+        position: relative;
+        right: 354px;
+        
+        &:hover{
+            cursor: pointer;
+            color:white;
+            background-color: black;
+        }
+    }
+}
+        .avatar-img
+        {
+            @include avatar;
+        }
+        .title
+        {
+            position: relative;
+              left: 25px;
+              font-size:18px;
+              font-weight: 600;
+        }
+        // justify-content: flex-end;
+       
+        .create-icon
+        {
+         position: relative;
+          left: 455px;
+          @include button-style;
+          background-color: $yellow-secondary;
+          color:black;
+          font-size: 12px;
+          width: 70px;
+          &:hover{
+            cursor: pointer;
+          }
+        }
+    }
+    .icon-flex
+    {
+        @include button-flex;
+        justify-content: center;
+        padding: 0px 10px 0px 10px;
+        &.month-view
+        {
+            gap:45px;
+            padding-bottom: 5px;
+            // width: 75%;
+        }
+        &.date-view
+        {
+            justify-content: unset;
+            overflow-x: scroll;
+            width:100%;
+            padding-bottom: 10px;
+            margin: 0px 20px 0px 20px;
+        }
+        &:hover{
+            cursor: pointer;
+        }
+    }
+}
+}
+::-webkit-scrollbar 
+{
+    width: 10px;
+    height: 5px;
+}

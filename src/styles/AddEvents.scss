@@ -13,16 +13,70 @@
 .add-events
 {
     @include pop-up;
-    // box-shadow: 0px 4px 11px rgba(118,172,153,255);
+    box-shadow: 0px 4px 11px $black-shadow;
     top:230px;
     position: fixed;
-    left: 500px;
+    gap:0;
+    left: 600px;
     width: max-content;
     text-align: center;
-    align-items: center;
+    // align-items: center;
+    // align-items:flex-start;
     font-size: 16px;
-    height: max-content;
-   
+    padding:10px 30px;
+    // height: max-content;
+    &.plus-update
+    {
+        top:200px;
+    }
+    .add-events-top-flex
+    {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 0px 10px 5px;
+        font-size: 18px;
+        font-weight: 600;
+        .close-icon
+        {
+            @include close-icon-position;
+            // stroke-width:2px transparent;
+            &:hover{
+                cursor: pointer;
+            }
+        }
+    }
+    .title-container
+    {
+        padding-bottom: 10px;
+    .add-title
+    {
+    border: 1px solid white;
+    width: 40px;
+    color: $grey-primary;
+    border-radius: 4px;
+    background-color: white;
+    position: relative;
+    top: 10px;
+    left: 20px;
+    font-size: 16px;
+    }
+    .date-time-input
+    {
+        font-family: 'Arial';
+    }
+    .add-description
+    {
+        @extend .add-title;
+        width:87px;
+    }
+    .add-time
+    {
+        @extend .add-title;
+        width:70px;
+        font-size: 14px;
+    }
+  
     .text-area
     {
         outline: none;
@@ -31,21 +85,72 @@
         background-color: white;
         border-radius: 4px;
         padding: 10px;
-        max-width:fit-content;
+        width:100%;
+        z-index:1;
+        // max-width:fit-content;
         resize:none;
+        font-size: 14px
+      
+    }
     }
     .button-flex
     {
         @include button-flex;
-        .close-button
+        padding:10px 0px;
+        &.ok-and-close-button
+        {
+            justify-content: center;
+           
+        }
+
+        .ok-button
         {
            @include button-style;
+           background-color: $primary-blue;
+             
+           border-color: transparent;
+           &:hover
+           {
+               cursor: pointer;
+           }
         }
         .cancel-button
             {
-        @extend .close-button;
+        @extend .ok-button;
         background-color: red;
+        &:hover
+        {
+            cursor: pointer;
         }
+        }
+        &.add-gap
+        {
+            gap:50px;
+        }
+      
+            .events
+            {
+            border:1px solid transparent;
+            padding: 10px;
+            color:$black-primary;
+            font-weight: 500;
+            background-color:$grey-teritiary;
+            border-radius: 6px;
+            &:hover{
+                cursor: pointer;
+            }
+            }
+            .type-event
+                {
+                    // background-color: $secondary-blue;
+                    background-color: $primary-blue;
+                    // color:$overlay-blue;
+                    color:white;
+                    // padding:5px;
+                    
+                }
+            
+           
     }
     .plus-icon
     {
@@ -66,8 +171,10 @@
     {
         display: flex;
         flex-direction: row;
+        padding-bottom: 10px;
         gap:10px;
         align-items: center;
+       
          & input[type=text]
         {
             background-color: white;
@@ -75,7 +182,13 @@
             border:1px solid grey;
             width:100%;
             padding: 10px;
+            
         }
+        & input[type=text]:focus
+            { 
+              border-color: $overlay-blue;  
+            }
+       
         & input[type=time]
         {
             width:100%;
@@ -85,11 +198,15 @@
         }
         & input[type=datetime-local]
         {
+            
             width:100%;
+            border:1px solid grey;
             height: max-content;
-            padding: 7px;
+            border-radius: 4px;
+            padding: 10px;
             text-align:center;
         }
     }
+   
 }
 

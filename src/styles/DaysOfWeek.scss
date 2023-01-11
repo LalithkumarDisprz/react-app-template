@@ -3,19 +3,27 @@
 .days-week
     {
         font-size: 16px;
-        height:30px;
-        margin:3.5px;
-        width: calc(231px/7);
+        // height:30px;
+        // margin:3.5px;
+        // width: calc(231px/7);
+        height: 40px;
+        margin: 10px;
+        width: 40px;
         align-items: center;
-        text-shadow: 0 3px 5px $black-shadow;
+        
+        
+        text-shadow: 0 0px 2px rgb(0 0 0 / 50%);
+        // align-items: center;
+        // text-shadow: 0 3px 5px $black-shadow;
         transition: background-color 0.2s;
         &.today
         {
-            background-color: $calender-header;
+            background: black;
+            color:white;
         }
         &:hover:not(.today){
-            background-color:$hover;
-            color:#185abc;
+            // background-color:$primary-blue;
+            color:$blue-for-day;
             cursor:pointer;
         }
         &.other-month-day
@@ -26,13 +34,20 @@
         {
             background-color: $background-image;
         }
+        &.selected-date
+        {
+            background: none;
+            background:$primary-blue;
+            color:white;
+        }
     }
     input[type=text]
     {
         text-align: center;
         color: black;
-        // background-color:$calender-background ;
+        background: repeating-linear-gradient(45deg,#ececea,$yellow-secondary) ;
         outline: none;
         border: none;
-        font-size: 12px;
+        font-size: 17px;
+        border-radius: 50%;
     }
