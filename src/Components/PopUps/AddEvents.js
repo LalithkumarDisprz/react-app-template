@@ -3,6 +3,8 @@ import axios from "axios";
 import ReactDOM from "react-dom";
 import "../../styles/AddEvents.scss";
 import moment from "moment";
+import { apiRequest } from "../../Services/Services";
+import { REQUEST_TYPES } from "../../Utils/RequestHeaderEnums";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faClose,
@@ -14,6 +16,7 @@ import { useSelector, useDispatch } from "react-redux";
 import TextareaAutosize from "react-textarea-autosize";
 import { ADD_POST, CHANGE_DATE, createAction } from "../../redux/actions";
 import ErrorDialogueBox from "./ErrorDialogueBox";
+import { meeting_Error } from "../../Utils/Constants";
 const AddEvents = (props) => {
   const [typeOfEvent, setType] = useState(props.type);
   const dispatch = useDispatch();
@@ -49,32 +52,46 @@ const AddEvents = (props) => {
   };
 
   const postDate = moment(monthDate).format("yyyy-MM-DDTHH:mm:ss");
-  const handleClick = () => {
+  const handleClick = async () => {
     if (newEvent.title.replace(/\s/g, "") !== "") {
-      axios
-        .post("http://localhost:5169/api/appointments", {
+      // axios
+      //   .post("http://localhost:5169/api/appointments", {
+      //     date: postDate,
+      //     title: newEvent.title,
+      //     description: newEvent.description,
+      //     type: typeOfEvent,
+      //     startTime: newEvent.start,
+      //     endTime: newEvent.end,
+      //   })
+      await apiRequest({
+        url: "",
+        method: REQUEST_TYPES.POST,
+        data: {
           date: postDate,
           title: newEvent.title,
           description: newEvent.description,
           type: typeOfEvent,
           startTime: newEvent.start,
           endTime: newEvent.end,
-        })
+        },
+      })
         .then((response) => {
-          setPost(response.data);
-          dispatch({
-            type: ADD_POST,
-          });
-          dispatch(createAction(CHANGE_DATE, newDate));
-          if (response.data) {
+          if (response.status === 201) {
+            setPost(response.data);
+            dispatch({
+              type: ADD_POST,
+            });
+            dispatch(createAction(CHANGE_DATE, newDate));
             props.close();
+          }
+          if (response.status === 409) {
+            setStatus(meeting_Error);
+            setDialogueBox(true);
+            setDisplayError(JSON.parse(response.data).message);
           }
         })
         .catch((error) => {
           console.log(error);
-          setStatus(error.response.status);
-          setDialogueBox(true);
-          setDisplayError(error.response.data);
         });
     }
   };

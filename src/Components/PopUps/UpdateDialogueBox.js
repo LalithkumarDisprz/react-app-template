@@ -8,6 +8,9 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { ADD_POST, CHANGE_DATE, createAction } from "../../redux/actions";
 import ErrorDialogueBox from "./ErrorDialogueBox";
+import { apiRequest } from "../../Services/Services";
+import { REQUEST_TYPES } from "../../Utils/RequestHeaderEnums";
+import { meeting_Error } from "../../Utils/Constants";
 const UpdateDialogueBox = ({ closeUpdateBox }) => {
   const updateData = useContext(UserContext);
   const type = updateData.type;
@@ -27,10 +30,22 @@ const UpdateDialogueBox = ({ closeUpdateBox }) => {
   const closeErrorDialogueBox = () => {
     setDialogueBox(false);
   };
-  const handleClick = (e) => {
+  const handleClick = async (e) => {
     if (events.title.replace(/\s/g, "") !== "") {
-      axios
-        .put("http://localhost:5169/api/appointments", {
+      // axios
+      //   .put("http://localhost:5169/api/appointments", {
+      //     id: updateData.id,
+      //     date: updateData.date,
+      //     title: events.title,
+      //     description: events.description,
+      //     type: typeOfEvent,
+      //     startTime: events.start,
+      //     endTime: events.end,
+      //   })
+      await apiRequest({
+        url: "",
+        method: REQUEST_TYPES.PUT,
+        data: {
           id: updateData.id,
           date: updateData.date,
           title: events.title,
@@ -38,21 +53,26 @@ const UpdateDialogueBox = ({ closeUpdateBox }) => {
           type: typeOfEvent,
           startTime: events.start,
           endTime: events.end,
-        })
+        },
+      })
         .then((response) => {
-          setUpdate(response.data);
-          dispatch({
-            type: ADD_POST,
-          });
-          dispatch(createAction(CHANGE_DATE, date));
-          if (response.data) {
+          if (response.status === 200) {
+            console.log("update");
+            setUpdate(response.data);
+            dispatch({
+              type: ADD_POST,
+            });
+            dispatch(createAction(CHANGE_DATE, date));
             closeUpdateBox();
+          }
+          if (response.status === 409) {
+            setDisplayStatus(meeting_Error);
+            setDialogueBox(true);
+            setDisplayError(JSON.parse(response.data).message);
           }
         })
         .catch((error) => {
-          setDisplayStatus(error.response.status);
-          setDialogueBox(true);
-          setDisplayError(error.response.data);
+          console.log(error);
         });
     }
   };

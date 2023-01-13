@@ -1,73 +1,31 @@
 @import "./style.scss";
 
-.confirmation-box-background
-{
+.confirmation-box-background {
+  @include background;
 
-    @include background;
+  .display-pop-up {
+    @include pop-up;
+    box-shadow: 0px 3px 7px $black-shadow;
 
-    .display-pop-up
-    {
-      @include pop-up;
-      box-shadow: 0px 3px 7px $black-shadow;
-      .confirmation-button-flex
-      {
-        @include button-flex;
-        justify-content: center;
-        .confirmation-button
-        {
+    .confirmation-button-flex {
+      @include button-flex;
+      justify-content: center;
+
+      .confirmation-button {
         @include button-style;
         border-color: transparent;
-        padding:5px;
-         width:35%;
-         
-         cursor: pointer;
-         &.add-color
-        {
-          background-color:$red-primary;
+        padding: 5px;
+        width: 35%;
+
+        cursor: pointer;
+
+        &.add-color {
+          background-color: $red-primary;
         }
-        }
-        
       }
     }
-    
-  }   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  }
+}
 
 // @import "./style.scss";
 // .cofirmation-box-background
@@ -86,7 +44,7 @@
 //       gap:20px;
 //       box-shadow: 0px 4px 11px $pink;
 //       border-radius: 10px;
-    
+
 //     .confirmation-button-flex
 //     {
 //         @include button-flex;
@@ -101,7 +59,7 @@
 //         {
 //         background-color: blueviolet;
 //             &:hover{
-//                 background-color: red; 
+//                 background-color: red;
 //             }
 //         }
 //         &:hover{

@@ -1,37 +1,36 @@
 @import "./style.scss";
 
-
 // .calender-box
 // {
 //     width: 100%;
 //     display: flex;
 //     flex-direction: column;
 //     align-items: center;
-    // background-image:"http://localhost:3000/Internal-Marketing-Calender.png";
-    .app-head
-    {
-        // background-color: $calender-header;
-        // background-image: $app-header;
-        background: $violet;
-       
-        // background-image: $gradient-violet;
-        background-image: $header-gradient;
-        width: 100%;
-        padding:10px;
-        // height:100px;
-        text-align: center;
-        position: fixed;
-        z-index: 20;
-        box-shadow: 0px 4px 11px $black-shadow;
-        color:white;
-    }
-    .calender-sidebar-container
-    {
-        // width: 100%;
-        padding: 20px;
-        position: relative;
-        // display: flex;
-        // position: fixed;
-        // top: 100px;
-    }
+// background-image:"http://localhost:3000/Internal-Marketing-Calender.png";
+.app-head {
+    // background-color: $calender-header;
+    // background-image: $app-header;
+    background: $violet;
+
+    // background-image: $gradient-violet;
+    background-image: $header-gradient;
+    width: 100%;
+    padding: 10px;
+    // height:100px;
+    text-align: center;
+    position: fixed;
+    z-index: 20;
+    box-shadow: 0px 4px 11px $black-shadow;
+    color: white;
+}
+
+.calender-sidebar-container {
+    // width: 100%;
+    padding: 20px;
+    position: relative;
+    // display: flex;
+    // position: fixed;
+    // top: 100px;
+}
+
 // }

@@ -6,13 +6,19 @@ import { UserContext } from "../EventContainer/EventContents";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { ADD_POST, CHANGE_DATE, createAction } from "../../redux/actions";
+import { apiRequest } from "../../Services/Services";
+import { REQUEST_TYPES } from "../../Utils/RequestHeaderEnums";
 const DeleteDialogueBox = ({ displayDeleteDialogue }) => {
   const dispatch = useDispatch();
   const post = useContext(UserContext);
   const date = useSelector((state) => state.datereducer.date);
-  const deletePost = () => {
-    axios
-      .delete(`http://localhost:5169/api/appointments/${post.id}`)
+  const deletePost = async () => {
+    // axios
+    //   .delete(`http://localhost:5169/api/appointments/${post.id}`)
+    await apiRequest({
+      url: `${post.id}`,
+      method: REQUEST_TYPES.DELETE,
+    })
       .then((response) => {
         dispatch({
           type: ADD_POST,

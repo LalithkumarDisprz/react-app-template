@@ -1,128 +1,139 @@
 @import "./style.scss";
-.edit-options-background
-{
+
+.edit-options-background {
     @include background;
     // position: relative;
 }
-.edit-options-container
-{
+
+.edit-options-container {
     position: fixed;
     @include pop-up;
-    left:500px;
+    left: 500px;
     padding: 20px 30px;
-    top:240px;
+    top: 240px;
     justify-content: center;
     // z-index:4;
     color: black;
     box-shadow: 0px 4px 11px $primary-blue;
     // transition: all 0.5s linear;
     font-size: 16px;
-       .edit-options-header
-       {
+
+    .edit-options-header {
         display: flex;
         justify-content: space-between;
-        
+
         align-items: center;
         font-size: 18px;
         font-weight: 600;
-        .edit-options-icon
-        {
+
+        .edit-options-icon {
             display: flex;
             align-items: center;
-            gap:20px;
-            color:dimgray;
-            &:hover{
+            gap: 20px;
+            color: dimgray;
+
+            &:hover {
                 cursor: pointer;
             }
         }
-        .edit-icons
-        {
-            &:hover{
+
+        .edit-icons {
+            &:hover {
                 color: $black-primary;
             }
         }
-        .close-icon
-        {
+
+        .close-icon {
             @include close-icon-position;
             font-size: 20px;
-            
-            &:hover{
-                color:$black-primary;
-            }
 
+            &:hover {
+                color: $black-primary;
+            }
         }
     }
-        .edit-options-sub-flex
-        {
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            text-align: justify;
-            gap:10px;
-            .event-title-type
-            {
-                width:20px;
-                height: 20px;
-                border:1px solid transparent;
-                border-radius: 4px;
-                background-color: $secondary-blue;
-                margin-right: 10px;
-                &.reminder-style
-                {
-                    background-color: $yellow;
-                }
-                &.hard-stop-style
-                {
-                    background-color: $grey-secondary;
-                }
+
+    .edit-options-sub-flex {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        text-align: justify;
+        gap: 10px;
+
+        .event-title-type {
+            width: 20px;
+            height: 20px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            background-color: $secondary-blue;
+            margin-right: 10px;
+
+            &.reminder-style {
+                background-color: $yellow;
             }
-            .title-and-time-display-container
-            {
-                display: flex;
-                flex-direction: column;
-                gap:10px;
-            .display-title
-            {
+
+            &.hard-stop-style {
+                background-color: $grey-secondary;
+            }
+        }
+
+        .title-and-time-display-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            .display-title {
                 font-size: 18px;
             }
-            .event-title-time-display
-            {
+
+            .event-title-time-display {
                 display: flex;
-                gap:10px;
+                gap: 10px;
                 font-size: 14px;
             }
         }
-            .contents-display
-            {
-                width:30px;
-                color: dimgray;
-                // &:hover{
-                //     color:$black-primary;
-                // }
-            }
-            .description
-            {
-                white-space: pre-wrap;
+
+        .contents-display {
+            width: 30px;
+            color: dimgray;
+            // &:hover{
+            //     color:$black-primary;
+            // }
+        }
+
+        .description {
+            white-space: pre-wrap;
+        }
+    }
+
+    .edit-update-button {
+        @include button-flex;
+        justify-content: center;
+
+        button {
+            @include button-style;
+            border: 1px solid $grey;
+            background-color: #fff;
+            color: black;
+            // box-shadow: 0px 4px 11px black;
+            width: 35%;
+
+            &:hover {
+                cursor: pointer;
+                border-color: $blue;
+                background-color: $button-hover;
+                color: $blue;
             }
         }
-    
-      .edit-update-button
-      {
-          @include button-flex;
-          justify-content: center;
-         button{
-            @include button-style;
-            border:1px solid transparent;
-            box-shadow: 0px 4px 11px black;
-            width:35%;
-            cursor: pointer;
 
-         }
-         .add-color
-         {
+        .add-color {
             background-color: red;
-         }
-      }
-    
-}
 
+            &:hover {
+                cursor: pointer;
+                color: white;
+                background-color: black;
+            }
+        }
+    }
+}

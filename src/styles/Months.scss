@@ -1,16 +1,16 @@
 @import "./style.scss";
 
-.month-container
-{
+.month-container {
     font-size: 18px;
-    color:$grey-primary;
- &.selected-month
-{
+    color: $grey-primary;
 
-    color:$black-primary;
-    font-weight: 700;
-}
-&:hover{
-      color:$overlay-blue;
-}
+    &.selected-month {
+
+        color: $black-primary;
+        font-weight: 700;
+    }
+
+    &:hover {
+        color: $overlay-blue;
+    }
 }

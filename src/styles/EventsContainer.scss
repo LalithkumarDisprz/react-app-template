@@ -1,12 +1,12 @@
 @import "./style.scss";
-.timeline-container
-{
-   
+
+.timeline-container {
+
     // width: 75%;
     // width:88%;
     // position: relative;
     // top: 100px;
-    top:250px;
+    top: 250px;
     // left:5px;
     // right:10px;
     // left: 385px;
@@ -27,35 +27,35 @@
     //     h3
     //     {
     //        margin: 0px;
-       
+
     //     }
-    
+
     //     // padding-left: 40px;
-    
+
     // }
-    .events-container
-    {
+    .events-container {
         padding: 15px;
         height: 60vh;
         overflow-y: auto;
         position: relative;
     }
-    
-   
-   
+
+
+
 }
-::-webkit-scrollbar 
-{
+
+::-webkit-scrollbar {
     width: 10px;
     height: 5px;
     // background-color: black;
 }
-::-webkit-scrollbar-track 
-{
+
+::-webkit-scrollbar-track {
     box-shadow: inset 0 0 5px $black-shadow;
     border-radius: 10px;
 }
+
 ::-webkit-scrollbar-thumb {
-    background: grey; 
+    background: grey;
     border-radius: 10px;
-  }
+}

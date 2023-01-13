@@ -6,9 +6,9 @@ const ErrorDialogueBox = ({ status, displayError, closeErrorDialogueBox }) => {
   return (
     <div
       className="error-dialogue-box-container"
-      onClick={(e) => e.stopPropagation}
+      onClick={(e) => e.stopPropagation()}
     >
-      <div className="dialogue-box-header">Error:{status} </div>
+      <div className="dialogue-box-header">{status} </div>
       <div className="error-dialogue-box-pop-up">
         <p>{displayError}</p>
         <button

@@ -3,12 +3,13 @@ import { useState, useEffect } from "react";
 import "../../styles/EventsContainer.scss";
 import Helper from "../../Utils/Helper";
 import moment from "moment";
-// import EventContents from './EventSubContainers';
+import { apiRequest } from "../../Services/Services";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 
 import { CHANGE_EVENTS, eventsAction } from "../../redux/actions";
 import EventSubContainers from "./EventSubContainers";
+import { REQUEST_TYPES } from "../../Utils/RequestHeaderEnums";
 const EventsContainer = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.postreducer.getValue);
@@ -16,8 +17,12 @@ const EventsContainer = () => {
   const timeLine = useSelector((state) => state.datereducer.events);
   const apiDate = moment(date).format("yyyy-MM-DDTHH:mm:ss");
   useEffect(() => {
-    axios
-      .get(`http://localhost:5169/api/appointments/${apiDate}`)
+    // axios
+    //   .get(`http://localhost:5169/api/appointments/${apiDate}`)
+    apiRequest({
+      url: `${apiDate}`,
+      method: REQUEST_TYPES.GET,
+    })
       .then((response) => {
         dispatch(eventsAction(CHANGE_EVENTS, timeLine, response.data));
       })

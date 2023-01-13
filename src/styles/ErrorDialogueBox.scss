@@ -1,37 +1,42 @@
-@import './style.scss';
-.error-dialogue-box-container
-{
+@import "./style.scss";
+
+.error-dialogue-box-container {
     @include pop-up;
     position: fixed;
-    border:1px solid $black-shadow;
+    border: 1px solid $black-shadow;
     align-items: center;
-    top:350px;
-    width:30%;
-    left:585px;
-    box-shadow:0px 4px 11px red ;
+    top: 350px;
+    width: 30%;
+    left: 585px;
+    border-radius: 6px;
+    box-shadow: 0px 4px 11px red;
     padding: 0;
-    .dialogue-box-header
-    {
-        padding:10px;
+
+    .dialogue-box-header {
+        padding: 10px;
         border: 1px solid transparent;
+        border-radius: 4px;
         background: red;
-        width: 100%;
+        width: 100.4%;
     }
- .error-dialogue-box-pop-up
-    {
+
+    .error-dialogue-box-pop-up {
         padding: 30px 50px 30px 50px;
-        p
-        {
+
+        p {
             border: 1px solid transparent;
             border-radius: 4px;
             padding: 5px 10px 5px 10px;
-            width:max-content;
+            width: max-content;
             box-shadow: 0px 4px 11px $black-shadow;
         }
-        .error-ok-button
-        {
+
+        .error-ok-button {
             @include button-style;
+            background-color: $primary-blue;
+
+            border-color: transparent;
+            cursor: pointer;
         }
     }
-
 }
