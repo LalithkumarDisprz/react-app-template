@@ -13,10 +13,12 @@ export const apiRequest = async (options) => {
   });
 
   const onSuccess = (response) => {
+    console.log(response,"pk")
     return response;
   };
 
   const onError = (error) => {
+    console.log(error,"lk")
     return error.response;
   };
   return client(options).then(onSuccess).catch(onError);

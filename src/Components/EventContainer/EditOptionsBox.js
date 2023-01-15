@@ -17,8 +17,9 @@ const EditOptionsBox = ({
   displayUpdateDialogue,
   displayDeleteDialogue,
   closeEditOptions,
+  events
 }) => {
-  const events = useContext(UserContext);
+  // const events = useContext(UserContext);
   return (
     <>
       <div

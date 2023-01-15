@@ -5,199 +5,202 @@
 @import "./style.scss";
 
 .add-events-background {
-    @include background;
-    z-index: 20;
+  @include background;
+  z-index: 20;
 }
 
 .add-events {
-    @include pop-up;
-    box-shadow: 0px 4px 11px $black-shadow;
-    top: 230px;
-    position: fixed;
-    gap: 0;
-    left: 600px;
-    width: max-content;
+  @include pop-up;
+  box-shadow: 0px 4px 11px $black-shadow;
+  top: 230px;
+  position: fixed;
+  gap: 0;
+  left: 600px;
+  width: max-content;
+  text-align: center;
+  // align-items: center;
+  // align-items:flex-start;
+  font-size: 16px;
+  padding: 10px 30px;
+
+  // height: max-content;
+  &.plus-update {
+    top: 200px;
+  }
+
+  .add-events-top-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0px 10px 5px;
+    font-size: 18px;
+    font-weight: 600;
+
+    .close-icon {
+      @include close-icon-position;
+
+      // stroke-width:2px transparent;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .title-container {
+    padding-bottom: 10px;
+
+    .add-title {
+      border: 1px solid white;
+      width: 40px;
+      color: $grey-primary;
+      border-radius: 4px;
+      background-color: white;
+      position: relative;
+      top: 10px;
+      left: 20px;
+      font-size: 16px;
+    }
+
+    .date-time-input {
+      font-family: "Arial";
+    }
+
+    .add-description {
+      @extend .add-title;
+      width: 87px;
+    }
+
+    .add-time {
+      @extend .add-title;
+      width: 70px;
+      font-size: 14px;
+    }
+
+    .text-area {
+      outline: none;
+      color: black;
+      border: 1px solid grey;
+      background-color: white;
+      border-radius: 4px;
+      padding: 10px;
+      width: 100%;
+      z-index: 1;
+      // max-width:fit-content;
+      resize: none;
+      font-size: 14px;
+    }
+  }
+
+  .button-flex {
+    @include button-flex;
+    padding: 10px 0px;
+
+    &.ok-and-close-button {
+      justify-content: center;
+    }
+
+    .ok-button {
+      @include button-style;
+      background-color: $primary-blue;
+
+      border-color: transparent;
+
+      &:hover {
+        cursor: pointer;
+        cursor: pointer;
+        border-color: $blue;
+        background-color: $button-hover;
+        color: $blue;
+      }
+    }
+
+    .cancel-button {
+      @extend .ok-button;
+      background-image: $red-background;
+      color: #fff;
+      border: 1px solid $red-secondary;
+
+      &:hover {
+        cursor: pointer;
+        color: #fff;
+        background-image: $black-background;
+        border-color: transparent;
+        border-color: transparent;
+      }
+    }
+
+    &.add-gap {
+      gap: 50px;
+    }
+
+    .events {
+      border: 1px solid transparent;
+      padding: 10px;
+      color: $black-primary;
+      font-weight: 500;
+      background-color: $grey-teritiary;
+      border-radius: 6px;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    .type-event {
+      // background-color: $secondary-blue;
+      background-color: $primary-blue;
+      // color:$overlay-blue;
+      color: white;
+      // padding:5px;
+    }
+  }
+
+  .plus-icon {
     text-align: center;
-    // align-items: center;
-    // align-items:flex-start;
-    font-size: 16px;
-    padding: 10px 30px;
+    border: 1px solid grey;
+    background-color: white;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
 
-    // height: max-content;
-    &.plus-update {
-        top: 200px;
+    &.fill-color {
+      color: #80ea;
+    }
+  }
+
+  .date-pick {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 10px;
+    gap: 10px;
+    align-items: center;
+
+    & input[type="text"] {
+      background-color: white;
+      color: black;
+      border: 1px solid grey;
+      width: 100%;
+      padding: 10px;
     }
 
-    .add-events-top-flex {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px 0px 10px 5px;
-        font-size: 18px;
-        font-weight: 600;
-
-        .close-icon {
-            @include close-icon-position;
-
-            // stroke-width:2px transparent;
-            &:hover {
-                cursor: pointer;
-            }
-        }
+    & input[type="text"]:focus {
+      border-color: $overlay-blue;
     }
 
-    .title-container {
-        padding-bottom: 10px;
-
-        .add-title {
-            border: 1px solid white;
-            width: 40px;
-            color: $grey-primary;
-            border-radius: 4px;
-            background-color: white;
-            position: relative;
-            top: 10px;
-            left: 20px;
-            font-size: 16px;
-        }
-
-        .date-time-input {
-            font-family: "Arial";
-        }
-
-        .add-description {
-            @extend .add-title;
-            width: 87px;
-        }
-
-        .add-time {
-            @extend .add-title;
-            width: 70px;
-            font-size: 14px;
-        }
-
-        .text-area {
-            outline: none;
-            color: black;
-            border: 1px solid grey;
-            background-color: white;
-            border-radius: 4px;
-            padding: 10px;
-            width: 100%;
-            z-index: 1;
-            // max-width:fit-content;
-            resize: none;
-            font-size: 14px;
-        }
+    & input[type="time"] {
+      width: 100%;
+      height: max-content;
+      padding: 7px;
+      text-align: center;
     }
 
-    .button-flex {
-        @include button-flex;
-        padding: 10px 0px;
-
-        &.ok-and-close-button {
-            justify-content: center;
-        }
-
-        .ok-button {
-            @include button-style;
-            background-color: $primary-blue;
-
-            border-color: transparent;
-
-            &:hover {
-                cursor: pointer;
-                cursor: pointer;
-                border-color: $blue;
-                background-color: $button-hover;
-                color: $blue;
-            }
-        }
-
-        .cancel-button {
-            @extend .ok-button;
-            background-color: red;
-
-            &:hover {
-                cursor: pointer;
-                color: white;
-                background-color: black;
-                border-color: transparent;
-            }
-        }
-
-        &.add-gap {
-            gap: 50px;
-        }
-
-        .events {
-            border: 1px solid transparent;
-            padding: 10px;
-            color: $black-primary;
-            font-weight: 500;
-            background-color: $grey-teritiary;
-            border-radius: 6px;
-
-            &:hover {
-                cursor: pointer;
-            }
-        }
-
-        .type-event {
-            // background-color: $secondary-blue;
-            background-color: $primary-blue;
-            // color:$overlay-blue;
-            color: white;
-            // padding:5px;
-        }
+    & input[type="datetime-local"] {
+      width: 100%;
+      border: 1px solid grey;
+      height: max-content;
+      border-radius: 4px;
+      padding: 10px;
+      text-align: center;
     }
-
-    .plus-icon {
-        text-align: center;
-        border: 1px solid grey;
-        background-color: white;
-        height: 50px;
-        width: 50px;
-        border-radius: 50%;
-
-        &.fill-color {
-            color: #80ea;
-        }
-    }
-
-    .date-pick {
-        display: flex;
-        flex-direction: row;
-        padding-bottom: 10px;
-        gap: 10px;
-        align-items: center;
-
-        & input[type="text"] {
-            background-color: white;
-            color: black;
-            border: 1px solid grey;
-            width: 100%;
-            padding: 10px;
-        }
-
-        & input[type="text"]:focus {
-            border-color: $overlay-blue;
-        }
-
-        & input[type="time"] {
-            width: 100%;
-            height: max-content;
-            padding: 7px;
-            text-align: center;
-        }
-
-        & input[type="datetime-local"] {
-            width: 100%;
-            border: 1px solid grey;
-            height: max-content;
-            border-radius: 4px;
-            padding: 10px;
-            text-align: center;
-        }
-    }
+  }
 }

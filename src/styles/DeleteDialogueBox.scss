@@ -13,14 +13,30 @@
 
       .confirmation-button {
         @include button-style;
-        border-color: transparent;
-        padding: 5px;
+        border: 1px solid $grey;
+        background-color: #fff;
+        color: black;
+
         width: 35%;
 
-        cursor: pointer;
+        &:hover {
+          cursor: pointer;
+          border-color: $blue;
+          background-color: $button-hover;
+          color: $blue;
+        }
 
         &.add-color {
-          background-color: $red-primary;
+          background-image: $red-background;
+          color: #fff;
+          border: 1px solid $red-secondary;
+
+          &:hover {
+              cursor: pointer;
+              background-image: $black-background;
+              border-color: transparent;
+              
+          }
         }
       }
     }

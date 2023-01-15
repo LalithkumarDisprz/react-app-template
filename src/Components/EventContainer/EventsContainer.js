@@ -28,7 +28,7 @@ const EventsContainer = () => {
       })
       .catch((error) => console.log(error));
   }, [state, date]);
-
+      
   return (
     <>
       <div className="timeline-container">

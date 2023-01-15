@@ -87,6 +87,11 @@ const AddEvents = (props) => {
           if (response.status === 409) {
             setStatus(meeting_Error);
             setDialogueBox(true);
+            setDisplayError(response.data.message);
+          }
+          if (response.status === 400) {
+            setStatus(meeting_Error);
+            setDialogueBox(true);
             setDisplayError(JSON.parse(response.data).message);
           }
         })

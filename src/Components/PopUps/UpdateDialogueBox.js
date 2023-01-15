@@ -11,9 +11,9 @@ import ErrorDialogueBox from "./ErrorDialogueBox";
 import { apiRequest } from "../../Services/Services";
 import { REQUEST_TYPES } from "../../Utils/RequestHeaderEnums";
 import { meeting_Error } from "../../Utils/Constants";
-const UpdateDialogueBox = ({ closeUpdateBox }) => {
-  const updateData = useContext(UserContext);
-  const type = updateData.type;
+const UpdateDialogueBox = ({ updateEvents,closeUpdateBox, }) => {
+  // const updateEvents = useContext(UserContext);
+  const type = updateEvents.type;
   const date = useSelector((state) => state.datereducer.date);
   const [dialogueBox, setDialogueBox] = useState(false);
   const [displayStatus, setDisplayStatus] = useState("");
@@ -22,10 +22,10 @@ const UpdateDialogueBox = ({ closeUpdateBox }) => {
   const dispatch = useDispatch();
   const [update, setUpdate] = useState(false);
   const [events, setEvents] = useState({
-    title: updateData.title,
-    description: updateData.description,
-    start: updateData.startTime,
-    end: updateData.endTime,
+    title: updateEvents.title,
+    description: updateEvents.description,
+    start: updateEvents.startTime,
+    end: updateEvents.endTime,
   });
   const closeErrorDialogueBox = () => {
     setDialogueBox(false);
@@ -34,8 +34,8 @@ const UpdateDialogueBox = ({ closeUpdateBox }) => {
     if (events.title.replace(/\s/g, "") !== "") {
       // axios
       //   .put("http://localhost:5169/api/appointments", {
-      //     id: updateData.id,
-      //     date: updateData.date,
+      //     id: updateEvents.id,
+      //     date: updateEvents.date,
       //     title: events.title,
       //     description: events.description,
       //     type: typeOfEvent,
@@ -46,8 +46,8 @@ const UpdateDialogueBox = ({ closeUpdateBox }) => {
         url: "",
         method: REQUEST_TYPES.PUT,
         data: {
-          id: updateData.id,
-          date: updateData.date,
+          id: updateEvents.id,
+          date: updateEvents.date,
           title: events.title,
           description: events.description,
           type: typeOfEvent,
@@ -65,10 +65,15 @@ const UpdateDialogueBox = ({ closeUpdateBox }) => {
             dispatch(createAction(CHANGE_DATE, date));
             closeUpdateBox();
           }
-          if (response.status === 409) {
+          if (response.status === 400) {
             setDisplayStatus(meeting_Error);
             setDialogueBox(true);
             setDisplayError(JSON.parse(response.data).message);
+          }
+          if (response.status === 409) {
+            setDisplayStatus(meeting_Error);
+            setDialogueBox(true);
+            setDisplayError(response.data.message);
           }
         })
         .catch((error) => {

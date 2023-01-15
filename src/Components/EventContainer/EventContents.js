@@ -91,9 +91,10 @@ const EventContents = ({ events, changeIndexOfTimeline }) => {
           </div>
         </div>
       </div>
-      <UserContext.Provider value={events}>
+      
         {openEditOptions ? (
           <EditOptionsBox
+            events={events}
             displayUpdateDialogue={displayUpdateDialogue}
             displayDeleteDialogue={displayDeleteDialogue}
             closeEditOptions={closeEditOptions}
@@ -102,16 +103,16 @@ const EventContents = ({ events, changeIndexOfTimeline }) => {
           " "
         )}
         {displayUpdateBox ? (
-          <UpdateDialogueBox closeUpdateBox={displayUpdateDialogue} />
+          <UpdateDialogueBox  updateEvents={events} closeUpdateBox={displayUpdateDialogue} />
         ) : (
           " "
         )}
         {displayDeleteBox ? (
-          <DeleteDialogueBox displayDeleteDialogue={displayDeleteDialogue} />
+          <DeleteDialogueBox events={events} displayDeleteDialogue={displayDeleteDialogue} />
         ) : (
           " "
         )}
-      </UserContext.Provider>
+      
     </>
   );
 };
