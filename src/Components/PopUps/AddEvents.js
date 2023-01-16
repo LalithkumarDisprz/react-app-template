@@ -81,7 +81,7 @@ const AddEvents = (props) => {
             dispatch({
               type: ADD_POST,
             });
-            dispatch(createAction(CHANGE_DATE, newDate));
+            // dispatch(createAction(CHANGE_DATE, newDate));
             props.close();
           }
           if (response.status === 409) {

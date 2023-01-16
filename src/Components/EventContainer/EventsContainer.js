@@ -12,7 +12,7 @@ import EventSubContainers from "./EventSubContainers";
 import { REQUEST_TYPES } from "../../Utils/RequestHeaderEnums";
 const EventsContainer = () => {
   const dispatch = useDispatch();
-  const state = useSelector((state) => state.postreducer.getValue);
+  const state = useSelector((state) => state.getEventsReducer.getValue);
   const date = useSelector((state) => state.datereducer.date);
   const timeLine = useSelector((state) => state.datereducer.events);
   const apiDate = moment(date).format("yyyy-MM-DDTHH:mm:ss");

@@ -27,6 +27,7 @@ const TimelineHeader = () => {
     if (selectedDate !== new Date().toDateString())
       dispatch(createAction(CHANGE_DATE, new Date().toDateString()));
     setCurrentDate(new Date());
+    setEventDate(new Date());
   };
   const decreaseMonth = () => {
     let previousMonth = date.getMonth() - 1;

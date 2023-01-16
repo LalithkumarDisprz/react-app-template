@@ -3,7 +3,7 @@ import { ADD_POST } from "../actions";
 const initialState = {
   getValue: false,
 };
-function postreducer(state = initialState, action) {
+function getEventsReducer(state = initialState, action) {
   switch (action.type) {
     case ADD_POST:
       return {
@@ -13,4 +13,4 @@ function postreducer(state = initialState, action) {
       return state;
   }
 }
-export default postreducer;
+export default getEventsReducer;
