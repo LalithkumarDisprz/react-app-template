@@ -16,9 +16,9 @@ const DeleteDialogueBox = ({ displayDeleteDialogue,events }) => {
     // axios
     //   .delete(`http://localhost:5169/api/appointments/${post.id}`)
     await apiRequest({
-      url: `${events.id}`,
+      url: `${events.id}/${events.date}`,
       method: REQUEST_TYPES.DELETE,
-      data:events.date,
+      
     
     })
       .then((response) => {

@@ -13,13 +13,12 @@ export const apiRequest = async (options) => {
   });
 
   const onSuccess = (response) => {
-    console.log(response,"pk")
+    console.log(response.data,"lk");
     return response;
   };
-
   const onError = (error) => {
-    console.log(error,"lk")
-    return error.response;
+    console.log(error.response,"err");
+    return(error.response);
   };
   return client(options).then(onSuccess).catch(onError);
 };

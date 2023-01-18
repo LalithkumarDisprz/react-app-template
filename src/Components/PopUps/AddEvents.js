@@ -54,16 +54,8 @@ const AddEvents = (props) => {
   const postDate = moment(monthDate).format("yyyy-MM-DDTHH:mm:ss");
   const handleClick = async () => {
     if (newEvent.title.replace(/\s/g, "") !== "") {
-      // axios
-      //   .post("http://localhost:5169/api/appointments", {
-      //     date: postDate,
-      //     title: newEvent.title,
-      //     description: newEvent.description,
-      //     type: typeOfEvent,
-      //     startTime: newEvent.start,
-      //     endTime: newEvent.end,
-      //   })
-      await apiRequest({
+     
+      var response=await apiRequest({
         url: "",
         method: REQUEST_TYPES.POST,
         data: {
@@ -75,29 +67,20 @@ const AddEvents = (props) => {
           endTime: newEvent.end,
         },
       })
-        .then((response) => {
-          if (response.status === 201) {
-            setPost(response.data);
+        if(response.status===201)
+        {
+          console.log(response,"response");
+          setPost(response.data);
             dispatch({
               type: ADD_POST,
             });
-            // dispatch(createAction(CHANGE_DATE, newDate));
             props.close();
-          }
-          if (response.status === 409) {
-            setStatus(meeting_Error);
-            setDialogueBox(true);
-            setDisplayError(response.data.message);
-          }
-          if (response.status === 400) {
-            setStatus(meeting_Error);
+        }
+        else{
+          setStatus(meeting_Error);
             setDialogueBox(true);
             setDisplayError(JSON.parse(response.data).message);
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+        }
     }
   };
   return ReactDOM.createPortal(

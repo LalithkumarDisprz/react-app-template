@@ -17,8 +17,7 @@ const EventsContainer = () => {
   const timeLine = useSelector((state) => state.datereducer.events);
   const apiDate = moment(date).format("yyyy-MM-DDTHH:mm:ss");
   useEffect(() => {
-    // axios
-    //   .get(`http://localhost:5169/api/appointments/${apiDate}`)
+    
     apiRequest({
       url: `${apiDate}`,
       method: REQUEST_TYPES.GET,

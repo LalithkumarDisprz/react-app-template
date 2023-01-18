@@ -4,3 +4,7 @@ export const REQUEST_TYPES = {
   PUT: "put",
   GET: "get",
 };
+export const URL_ROUTE=
+{
+  RANGE:"range",
+}

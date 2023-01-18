@@ -1,0 +1,16 @@
+@import './style.scss';
+.agenda-container
+{
+    top: 250px;
+    margin-top: 30px;
+    border-radius: 4px;
+    text-align: center;
+    
+    .events-container
+    {
+    padding: 15px;
+    height: 60vh;
+    overflow-y: auto;
+    position: relative;
+    }
+}

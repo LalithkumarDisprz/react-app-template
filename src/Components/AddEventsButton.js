@@ -41,7 +41,7 @@ const AddEventsButton = ({ eventDate }) => {
         >
           <li onClick={() => openAddEvents("Event")}>Events</li>
           <li onClick={() => openAddEvents("Reminder")}>Reminder</li>
-          <li onClick={() => openAddEvents("Out of office")}>Out 0f Office</li>
+          <li onClick={() => openAddEvents("Out of office")}>Out Of Office</li>
         </div>
       </div>
       {addEvents ? (

@@ -16,7 +16,7 @@ import Months from "./Months";
 import Days from "./Days";
 import AddEventsButton from "../AddEventsButton";
 
-const TimelineHeader = () => {
+const TimelineHeader = ({changeTimeLine}) => {
   const dispatch = useDispatch();
   const [view, setView] = useState(false);
   const selectedDate = useSelector((state) => state.datereducer.date);
@@ -70,6 +70,8 @@ const TimelineHeader = () => {
               <button className="today-button" onClick={changeToday}>
                 Today
               </button>
+              <div className="timeline-title" onClick={()=>changeTimeLine(true)}>TimeLine</div>
+              <div className="event-title" onClick={()=>changeTimeLine(false)}>Upcoming Events</div>
             </div>
             <div className="title">Schedule Your Events</div>
             <div></div>

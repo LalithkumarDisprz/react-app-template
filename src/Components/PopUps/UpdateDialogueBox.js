@@ -11,7 +11,7 @@ import ErrorDialogueBox from "./ErrorDialogueBox";
 import { apiRequest } from "../../Services/Services";
 import { REQUEST_TYPES } from "../../Utils/RequestHeaderEnums";
 import { meeting_Error } from "../../Utils/Constants";
-const UpdateDialogueBox = ({ updateEvents,closeUpdateBox, }) => {
+const UpdateDialogueBox = ({ updateEvents, closeUpdateBox }) => {
   // const updateEvents = useContext(UserContext);
   const type = updateEvents.type;
   const date = useSelector((state) => state.datereducer.date);
@@ -42,7 +42,7 @@ const UpdateDialogueBox = ({ updateEvents,closeUpdateBox, }) => {
       //     startTime: events.start,
       //     endTime: events.end,
       //   })
-      await apiRequest({
+      var response = await apiRequest({
         url: "",
         method: REQUEST_TYPES.PUT,
         data: {
@@ -54,31 +54,21 @@ const UpdateDialogueBox = ({ updateEvents,closeUpdateBox, }) => {
           startTime: events.start,
           endTime: events.end,
         },
-      })
-        .then((response) => {
-          if (response.status === 200) {
-            console.log("update");
-            setUpdate(response.data);
-            dispatch({
-              type: ADD_POST,
-            });
-            dispatch(createAction(CHANGE_DATE, date));
-            closeUpdateBox();
-          }
-          if (response.status === 400) {
-            setDisplayStatus(meeting_Error);
-            setDialogueBox(true);
-            setDisplayError(JSON.parse(response.data).message);
-          }
-          if (response.status === 409) {
-            setDisplayStatus(meeting_Error);
-            setDialogueBox(true);
-            setDisplayError(response.data.message);
-          }
-        })
-        .catch((error) => {
-          console.log(error);
+      });
+      console.log(response, "response");
+      if (response.status === 200) {
+        console.log("update");
+        setUpdate(response.data);
+        dispatch({
+          type: ADD_POST,
         });
+        dispatch(createAction(CHANGE_DATE, date));
+        closeUpdateBox();
+      } else {
+        setDisplayStatus(meeting_Error);
+        setDialogueBox(true);
+        setDisplayError(JSON.parse(response.data).message);
+      }
     }
   };
   const updateDescription = (e) => {
