@@ -11,6 +11,7 @@ import ErrorDialogueBox from "./ErrorDialogueBox";
 import { apiRequest } from "../../Services/Services";
 import { REQUEST_TYPES } from "../../Utils/RequestHeaderEnums";
 import { meeting_Error } from "../../Utils/Constants";
+import { updateApi } from "../../Services/apiData";
 const UpdateDialogueBox = ({ updateEvents, closeUpdateBox }) => {
   // const updateEvents = useContext(UserContext);
   const type = updateEvents.type;
@@ -42,19 +43,29 @@ const UpdateDialogueBox = ({ updateEvents, closeUpdateBox }) => {
       //     startTime: events.start,
       //     endTime: events.end,
       //   })
-      var response = await apiRequest({
-        url: "",
-        method: REQUEST_TYPES.PUT,
-        data: {
-          id: updateEvents.id,
-          date: updateEvents.date,
-          title: events.title,
-          description: events.description,
-          type: typeOfEvent,
-          startTime: events.start,
-          endTime: events.end,
-        },
-      });
+      const data= {
+        id: updateEvents.id,
+        date: updateEvents.date,
+        title: events.title,
+        description: events.description,
+        type: typeOfEvent,
+        startTime: events.start,
+        endTime: events.end,
+      }
+      var response = await updateApi(data);
+      //  apiRequest({
+      //   url: "",
+      //   method: REQUEST_TYPES.PUT,
+      //   data: {
+      //     id: updateEvents.id,
+      //     date: updateEvents.date,
+      //     title: events.title,
+      //     description: events.description,
+      //     type: typeOfEvent,
+      //     startTime: events.start,
+      //     endTime: events.end,
+      //   },
+      // });
       console.log(response, "response");
       if (response.status === 200) {
         console.log("update");

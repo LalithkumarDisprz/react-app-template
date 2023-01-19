@@ -18,7 +18,7 @@ import AddEventsButton from "../AddEventsButton";
 
 const TimelineHeader = ({changeTimeLine}) => {
   const dispatch = useDispatch();
-  const [view, setView] = useState(false);
+  const [view, setView] = useState(true);
   const selectedDate = useSelector((state) => state.datereducer.date);
   const [eventDate, setEventDate] = useState(new Date());
   const prevDate = useSelector((state) => state.datereducer.date);
@@ -60,6 +60,11 @@ const TimelineHeader = ({changeTimeLine}) => {
     const selectedMonth = month.indexOf(newMonth);
     setCurrentDate(new Date(date.setMonth(selectedMonth)));
   };
+  const changeAgenda=(value)=>
+  {
+    changeTimeLine(value);
+    setView(!view);
+  }
   return (
     <>
       <div className="timeline-top-container">
@@ -70,8 +75,8 @@ const TimelineHeader = ({changeTimeLine}) => {
               <button className="today-button" onClick={changeToday}>
                 Today
               </button>
-              <div className="timeline-title" onClick={()=>changeTimeLine(true)}>TimeLine</div>
-              <div className="event-title" onClick={()=>changeTimeLine(false)}>Upcoming Events</div>
+              <div className={`timeline-title ${view && "selected-view"}`} onClick={()=>changeAgenda(true)}>TimeLine</div>
+              <div className={`event-title ${!view && "selected-view"}`} onClick={()=>changeAgenda(false)}>Upcoming Events</div>
             </div>
             <div className="title">Schedule Your Events</div>
             <div></div>

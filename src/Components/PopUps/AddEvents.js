@@ -17,6 +17,7 @@ import TextareaAutosize from "react-textarea-autosize";
 import { ADD_POST, CHANGE_DATE, createAction } from "../../redux/actions";
 import ErrorDialogueBox from "./ErrorDialogueBox";
 import { meeting_Error } from "../../Utils/Constants";
+import { postApi } from "../../Services/apiData";
 const AddEvents = (props) => {
   const [typeOfEvent, setType] = useState(props.type);
   const dispatch = useDispatch();
@@ -53,34 +54,40 @@ const AddEvents = (props) => {
 
   const postDate = moment(monthDate).format("yyyy-MM-DDTHH:mm:ss");
   const handleClick = async () => {
-    if (newEvent.title.replace(/\s/g, "") !== "") {
-     
-      var response=await apiRequest({
-        url: "",
-        method: REQUEST_TYPES.POST,
-        data: {
-          date: postDate,
-          title: newEvent.title,
-          description: newEvent.description,
-          type: typeOfEvent,
-          startTime: newEvent.start,
-          endTime: newEvent.end,
-        },
-      })
-        if(response.status===201)
-        {
-          console.log(response,"response");
-          setPost(response.data);
-            dispatch({
-              type: ADD_POST,
-            });
-            props.close();
-        }
-        else{
-          setStatus(meeting_Error);
-            setDialogueBox(true);
-            setDisplayError(JSON.parse(response.data).message);
-        }
+    if (newEvent.title.replace(/\s/g, "") !== "" ) {
+      const data = {
+        date: postDate,
+        title: newEvent.title,
+        description: newEvent.description,
+        type: typeOfEvent,
+        startTime: newEvent.start,
+        endTime: newEvent.end,
+      };
+      var response = await postApi(data);
+      // await apiRequest({
+      //   url: "",
+      //   method: REQUEST_TYPES.POST,
+      //   data: {
+      //     date: postDate,
+      //     title: newEvent.title,
+      //     description: newEvent.description,
+      //     type: typeOfEvent,
+      //     startTime: newEvent.start,
+      //     endTime: newEvent.end,
+      //   },
+      // })
+      if (response.status === 201) {
+        console.log(response, "response");
+        setPost(response.data);
+        dispatch({
+          type: ADD_POST,
+        });
+        props.close();
+      } else {
+        setStatus(meeting_Error);
+        setDialogueBox(true);
+        setDisplayError(JSON.parse(response.data).message);
+      }
     }
   };
   return ReactDOM.createPortal(

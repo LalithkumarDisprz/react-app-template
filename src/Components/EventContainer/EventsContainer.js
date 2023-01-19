@@ -6,7 +6,7 @@ import moment from "moment";
 import { apiRequest } from "../../Services/Services";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-
+import { getApi } from "../../Services/apiData";
 import { CHANGE_EVENTS, eventsAction } from "../../redux/actions";
 import EventSubContainers from "./EventSubContainers";
 import { REQUEST_TYPES } from "../../Utils/RequestHeaderEnums";
@@ -18,11 +18,11 @@ const EventsContainer = () => {
   const apiDate = moment(date).format("yyyy-MM-DDTHH:mm:ss");
   useEffect(() => {
     
-    apiRequest({
-      url: `${apiDate}`,
-      method: REQUEST_TYPES.GET,
-    })
-      .then((response) => {
+    // apiRequest({
+    //   url: `${apiDate}`,
+    //   method: REQUEST_TYPES.GET,
+    // })
+      getApi(apiDate).then((response) => {
         dispatch(eventsAction(CHANGE_EVENTS, timeLine, response.data));
       })
       .catch((error) => console.log(error));

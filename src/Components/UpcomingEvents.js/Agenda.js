@@ -5,31 +5,51 @@ import "../../styles/Agenda.scss";
 import { URL_ROUTE, REQUEST_TYPES } from "../../Utils/RequestHeaderEnums";
 import moment from "moment";
 import EventCards from "./EventCards";
-const Agenda = ({state}) => {
+import ScheduledEvents from "./ScheduledEvents";
+import { getRangeApi } from "../../Services/apiData";
+import EventsDescription from "./EventsDescription";
+const Agenda = ({ state }) => {
   const date = useSelector((state) => state.datereducer.date);
   const apiDate = moment(date).format("yyyy-MM-DDTHH:mm:ss");
   const [upcomingEvents, setUpcomingEvents] = useState([]);
+  const [viewDescription, setViewDescription] = useState("");
   useEffect(() => {
-    apiRequest({
-      url: `${URL_ROUTE.RANGE}/${apiDate}`,
-      method: REQUEST_TYPES.GET,
-    })
+    // apiRequest({
+    //   url: `${URL_ROUTE.RANGE}/${apiDate}`,
+    //   method: REQUEST_TYPES.GET,
+    // })
+    getRangeApi(apiDate)
       .then((response) => {
         setUpcomingEvents(response.data);
-        
       })
       .catch((error) => console.log(error));
-  }, [state]);
-  console.log(upcomingEvents)
+  }, [state, date]);
+  const sendDescription = (content) => {
+    setViewDescription(content);
+  };
   return (
     <div className="agenda-container">
-      <div className="events-container">
-        {upcomingEvents === [] ? (
-          <div>No data To Display</div>
-        ) : 
+      <div className="agenda-title">Agenda for the Week</div>
+      <div className="agenda-events-appointments-container">
+        <div className="events-container">
+          {upcomingEvents.length === 0 ? (
+            <div className="no-events">No data To Display</div>
+          ) : (
             upcomingEvents.map((data) => (
-                <EventCards events={data} />
-              ))}
+              <EventCards events={data} sendDescription={sendDescription} />
+            ))
+          )}
+        </div>
+        <div className="scheduled-events-display">
+          <ScheduledEvents events={upcomingEvents} />
+          <div className='view-description-container'>
+          {viewDescription === "" ? (
+            "(No Description to show)"
+          ) : (
+            <EventsDescription display={viewDescription} />
+          )}
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -19,7 +19,6 @@ const EditOptionsBox = ({
   closeEditOptions,
   events
 }) => {
-  // const events = useContext(UserContext);
   return (
     <>
       <div

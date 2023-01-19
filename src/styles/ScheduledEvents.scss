@@ -1,0 +1,24 @@
+@import "./style.scss";
+.scheduled-events-container
+{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    height: 250px;
+    width:250px;
+    padding: 10px;
+    background-color: $secondary-blue;
+    border-radius: 4px;
+    font-size: 46px;
+    gap:20px;
+    .calender-icon
+    {
+        color: $grey-primary;
+    }
+    .remaining-events
+    {
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+}
