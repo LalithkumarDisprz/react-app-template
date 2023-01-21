@@ -1,12 +1,11 @@
-import React, { useMemo } from "react";
+import React, { useCallback, useMemo } from "react";
 import { useState, useEffect } from "react";
 import "../../styles/EventsContainer.scss";
 import Helper from "../../Utils/Helper";
 import moment from "moment";
-import { apiRequest } from "../../Services/Services";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { getApi } from "../../Services/apiData";
+import { getAppointment } from "../../Services/apiData";
 import { CHANGE_EVENTS, eventsAction } from "../../redux/actions";
 import EventSubContainers from "./EventSubContainers";
 import { REQUEST_TYPES } from "../../Utils/RequestHeaderEnums";
@@ -15,19 +14,15 @@ const EventsContainer = () => {
   const state = useSelector((state) => state.getEventsReducer.getValue);
   const date = useSelector((state) => state.datereducer.date);
   const timeLine = useSelector((state) => state.datereducer.events);
-  const apiDate = moment(date).format("yyyy-MM-DDTHH:mm:ss");
-  useEffect(() => {
-    
-    // apiRequest({
-    //   url: `${apiDate}`,
-    //   method: REQUEST_TYPES.GET,
-    // })
-      getApi(apiDate).then((response) => {
-        dispatch(eventsAction(CHANGE_EVENTS, timeLine, response.data));
-      })
-      .catch((error) => console.log(error));
+  const dateToBeFetched = moment(date).format("yyyy-MM-DDTHH:mm:ss");
+
+  const fetchAppointment = useCallback(async () => {
+    var response = await getAppointment(dateToBeFetched);
+    dispatch(eventsAction(CHANGE_EVENTS, timeLine, response.data));
   }, [state, date]);
-      
+  useEffect(() => {
+    fetchAppointment().catch(console.error);
+  }, [fetchAppointment]);
   return (
     <>
       <div className="timeline-container">

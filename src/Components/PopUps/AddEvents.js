@@ -17,7 +17,7 @@ import TextareaAutosize from "react-textarea-autosize";
 import { ADD_POST, CHANGE_DATE, createAction } from "../../redux/actions";
 import ErrorDialogueBox from "./ErrorDialogueBox";
 import { meeting_Error } from "../../Utils/Constants";
-import { postApi } from "../../Services/apiData";
+import { postAppointment } from "../../Services/apiData";
 const AddEvents = (props) => {
   const [typeOfEvent, setType] = useState(props.type);
   const dispatch = useDispatch();
@@ -32,7 +32,7 @@ const AddEvents = (props) => {
     end: moment(props.eventDate).add(30, "minutes").format("yyyy-MM-DDTHH:mm"),
   });
   const newDate = useSelector((state) => state.datereducer.date);
-  const monthDate = moment(newEvent.start).format("yyyy-MM-DD");
+  // const monthDate = moment(newEvent.start).format("yyyy-MM-DD");
   const closeEvent = (e) => {
     props.close();
   };
@@ -51,31 +51,17 @@ const AddEvents = (props) => {
   const closeErrorDialogueBox = () => {
     setDialogueBox(false);
   };
-
-  const postDate = moment(monthDate).format("yyyy-MM-DDTHH:mm:ss");
   const handleClick = async () => {
     if (newEvent.title.replace(/\s/g, "") !== "" ) {
       const data = {
-        date: postDate,
+        date: newEvent.start,
         title: newEvent.title,
         description: newEvent.description,
         type: typeOfEvent,
         startTime: newEvent.start,
         endTime: newEvent.end,
       };
-      var response = await postApi(data);
-      // await apiRequest({
-      //   url: "",
-      //   method: REQUEST_TYPES.POST,
-      //   data: {
-      //     date: postDate,
-      //     title: newEvent.title,
-      //     description: newEvent.description,
-      //     type: typeOfEvent,
-      //     startTime: newEvent.start,
-      //     endTime: newEvent.end,
-      //   },
-      // })
+      var response = await postAppointment(data);
       if (response.status === 201) {
         console.log(response, "response");
         setPost(response.data);

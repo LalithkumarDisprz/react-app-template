@@ -3,7 +3,7 @@ import '../../styles/EventsDescription.scss'
 const EventsDescription = ({display}) => {
   return (
     <div >
-      <div>Description</div>
+      <div><b>Description</b></div>
       <pre>{display}</pre>
     </div>
   )

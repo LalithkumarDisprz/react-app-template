@@ -5,9 +5,6 @@ import "../../styles/EventContents.scss";
 import EditOptionsBox from "./EditOptionsBox";
 import UpdateDialogueBox from "../PopUps/UpdateDialogueBox";
 import DeleteDialogueBox from "../PopUps/DeleteDialogueBox";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircle } from "@fortawesome/free-solid-svg-icons";
-import { useSelector } from "react-redux";
 export const UserContext = createContext();
 const EventContents = ({ events, changeIndexOfTimeline }) => {
   const [displayUpdateBox, setDisplayUpdateBox] = useState(false);
@@ -30,6 +27,23 @@ const EventContents = ({ events, changeIndexOfTimeline }) => {
     var dec = parseInt((arr[1] / 6) * 10, 10);
     return parseFloat(parseInt(arr[0], 10) + "." + (dec < 10 ? "0" : "") + dec);
   }
+  const heightStyle = () => {
+    if (
+      moment(events.startTime).format("HH") <
+      moment(events.endTime).format("HH")
+    ) {
+      if (
+        timeToDecimal(endToDecimal) ===
+        timeToDecimal(startToDecimal) + difference
+      ) {
+        return `calc(${100 * difference}% - 2px)`;
+      } else {
+        return `calc(${correctedHeight}% + ${pixel - 2}px)`;
+      }
+    } else {
+      return `calc((${correctedHeight}% -  ${additionalPixel - 2}px)`;
+    }
+  };
   const editOptions = (e) => {
     setEditOptions(true);
     changeIndexOfTimeline(true);
@@ -52,14 +66,7 @@ const EventContents = ({ events, changeIndexOfTimeline }) => {
   };
   const eventStyle = {
     top: `${topStyle}%`,
-    height:
-      moment(events.startTime).format("HH") <
-      moment(events.endTime).format("HH")
-        ? timeToDecimal(endToDecimal) ===
-          timeToDecimal(startToDecimal) + difference
-          ? `calc(${100 * difference}% - 2px)`
-          : `calc(${correctedHeight}% + ${pixel - 2}px)`
-        : `calc((${correctedHeight}% -  ${additionalPixel - 2}px)`,
+    height: heightStyle(),
     fontSize: duration < 0.5 ? (duration < 0.3 ? "6px" : "8px") : "12px",
     marginTop: duration >= 1 ? "4px" : "2px",
   };
@@ -91,30 +98,43 @@ const EventContents = ({ events, changeIndexOfTimeline }) => {
           </div>
         </div>
       </div>
-      
-        {openEditOptions ? (
-          <EditOptionsBox
-            events={events}
-            displayUpdateDialogue={displayUpdateDialogue}
-            displayDeleteDialogue={displayDeleteDialogue}
-            closeEditOptions={closeEditOptions}
-          />
-        ) : (
-          " "
-        )}
-        {displayUpdateBox ? (
-          <UpdateDialogueBox  updateEvents={events} closeUpdateBox={displayUpdateDialogue} />
-        ) : (
-          " "
-        )}
-        {displayDeleteBox ? (
-          <DeleteDialogueBox events={events} displayDeleteDialogue={displayDeleteDialogue} />
-        ) : (
-          " "
-        )}
-      
+
+      {openEditOptions ? (
+        <EditOptionsBox
+          events={events}
+          displayUpdateDialogue={displayUpdateDialogue}
+          displayDeleteDialogue={displayDeleteDialogue}
+          closeEditOptions={closeEditOptions}
+        />
+      ) : (
+        " "
+      )}
+      {displayUpdateBox ? (
+        <UpdateDialogueBox
+          updateEvent={events}
+          closeUpdateBox={displayUpdateDialogue}
+        />
+      ) : (
+        " "
+      )}
+      {displayDeleteBox ? (
+        <DeleteDialogueBox
+          events={events}
+          displayDeleteDialogue={displayDeleteDialogue}
+        />
+      ) : (
+        " "
+      )}
     </>
   );
 };
 
 export default EventContents;
+
+//  { moment(events.startTime).format("HH") <
+//   moment(events.endTime).format("HH")
+//     ? timeToDecimal(endToDecimal) ===
+//       timeToDecimal(startToDecimal) + difference
+//       ? `calc(${100 * difference}% - 2px)`
+//       : `calc(${correctedHeight}% + ${pixel - 2}px)`
+//     : `calc((${correctedHeight}% -  ${additionalPixel - 2}px)`,}

@@ -8,13 +8,13 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { ADD_POST, CHANGE_DATE, createAction } from "../../redux/actions";
 import ErrorDialogueBox from "./ErrorDialogueBox";
-import { apiRequest } from "../../Services/Services";
+import moment from "moment";
 import { REQUEST_TYPES } from "../../Utils/RequestHeaderEnums";
 import { meeting_Error } from "../../Utils/Constants";
-import { updateApi } from "../../Services/apiData";
-const UpdateDialogueBox = ({ updateEvents, closeUpdateBox }) => {
-  // const updateEvents = useContext(UserContext);
-  const type = updateEvents.type;
+import { updateApi, updateAppointment } from "../../Services/apiData";
+const UpdateDialogueBox = ({ updateEvent, closeUpdateBox }) => {
+  // const  = useContext(UserContext);
+  const type = updateEvent.type;
   const date = useSelector((state) => state.datereducer.date);
   const [dialogueBox, setDialogueBox] = useState(false);
   const [displayStatus, setDisplayStatus] = useState("");
@@ -23,52 +23,30 @@ const UpdateDialogueBox = ({ updateEvents, closeUpdateBox }) => {
   const dispatch = useDispatch();
   const [update, setUpdate] = useState(false);
   const [events, setEvents] = useState({
-    title: updateEvents.title,
-    description: updateEvents.description,
-    start: updateEvents.startTime,
-    end: updateEvents.endTime,
+    title: updateEvent.title,
+    description: updateEvent.description,
+    start: updateEvent.startTime,
+    end: updateEvent.endTime,
   });
   const closeErrorDialogueBox = () => {
     setDialogueBox(false);
   };
   const handleClick = async (e) => {
     if (events.title.replace(/\s/g, "") !== "") {
-      // axios
-      //   .put("http://localhost:5169/api/appointments", {
-      //     id: updateEvents.id,
-      //     date: updateEvents.date,
-      //     title: events.title,
-      //     description: events.description,
-      //     type: typeOfEvent,
-      //     startTime: events.start,
-      //     endTime: events.end,
-      //   })
-      const data= {
-        id: updateEvents.id,
-        date: updateEvents.date,
-        title: events.title,
-        description: events.description,
-        type: typeOfEvent,
-        startTime: events.start,
-        endTime: events.end,
-      }
-      var response = await updateApi(data);
-      //  apiRequest({
-      //   url: "",
-      //   method: REQUEST_TYPES.PUT,
-      //   data: {
-      //     id: updateEvents.id,
-      //     date: updateEvents.date,
-      //     title: events.title,
-      //     description: events.description,
-      //     type: typeOfEvent,
-      //     startTime: events.start,
-      //     endTime: events.end,
-      //   },
-      // });
-      console.log(response, "response");
+      const data = {
+        appointment: {
+          id: updateEvent.id,
+          date: events.start,
+          title: events.title,
+          description: events.description,
+          type: typeOfEvent,
+          startTime: events.start,
+          endTime: events.end,
+        },
+        oldDate: updateEvent.date,
+      };
+      var response = await updateAppointment(data);
       if (response.status === 200) {
-        console.log("update");
         setUpdate(response.data);
         dispatch({
           type: ADD_POST,

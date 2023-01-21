@@ -8,28 +8,21 @@ import axios from "axios";
 import { ADD_POST, CHANGE_DATE, createAction } from "../../redux/actions";
 import { apiRequest } from "../../Services/Services";
 import { REQUEST_TYPES } from "../../Utils/RequestHeaderEnums";
-import { deleteApi } from "../../Services/apiData";
-const DeleteDialogueBox = ({ displayDeleteDialogue,events }) => {
+import { deleteAppointment } from "../../Services/apiData";
+const DeleteDialogueBox = ({ displayDeleteDialogue, events }) => {
   const dispatch = useDispatch();
-  // const post = useContext(UserContext);
   const date = useSelector((state) => state.datereducer.date);
   const deletePost = async () => {
-    // axios
-    //   .delete(`http://localhost:5169/api/appointments/${post.id}`)
-    var response= await deleteApi(events.id,events.date)
-      if(response.status===204)
-      {
-        dispatch({
-          type: ADD_POST,
-        });
+    var response = await deleteAppointment(events.id, events.date);
+    if (response.status === 204) {
+      dispatch({
+        type: ADD_POST,
+      });
+      dispatch(createAction(CHANGE_DATE, date));
+      displayDeleteDialogue();
+    } else alert(response.data);
+  };
 
-        dispatch(createAction(CHANGE_DATE, date));
-
-        displayDeleteDialogue();
-      }
-      else alert(response.data);
-    }
-  
   return (
     <>
       <div className="confirmation-box-background">

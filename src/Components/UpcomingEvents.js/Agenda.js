@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { apiRequest } from "../../Services/Services";
 import "../../styles/Agenda.scss";
@@ -6,24 +6,20 @@ import { URL_ROUTE, REQUEST_TYPES } from "../../Utils/RequestHeaderEnums";
 import moment from "moment";
 import EventCards from "./EventCards";
 import ScheduledEvents from "./ScheduledEvents";
-import { getRangeApi } from "../../Services/apiData";
+import { getAppointmentsForWeek, getRangeApi } from "../../Services/apiData";
 import EventsDescription from "./EventsDescription";
 const Agenda = ({ state }) => {
   const date = useSelector((state) => state.datereducer.date);
   const apiDate = moment(date).format("yyyy-MM-DDTHH:mm:ss");
   const [upcomingEvents, setUpcomingEvents] = useState([]);
   const [viewDescription, setViewDescription] = useState("");
-  useEffect(() => {
-    // apiRequest({
-    //   url: `${URL_ROUTE.RANGE}/${apiDate}`,
-    //   method: REQUEST_TYPES.GET,
-    // })
-    getRangeApi(apiDate)
-      .then((response) => {
-        setUpcomingEvents(response.data);
-      })
-      .catch((error) => console.log(error));
+  const fetchAppointmentForWeek = useCallback(async () => {
+    var response = await getAppointmentsForWeek(apiDate);
+    setUpcomingEvents(response.data);
   }, [state, date]);
+  useEffect(() => {
+    fetchAppointmentForWeek().catch(console.error);
+  }, [fetchAppointmentForWeek]);
   const sendDescription = (content) => {
     setViewDescription(content);
   };
@@ -42,12 +38,12 @@ const Agenda = ({ state }) => {
         </div>
         <div className="scheduled-events-display">
           <ScheduledEvents events={upcomingEvents} />
-          <div className='view-description-container'>
-          {viewDescription === "" ? (
-            "(No Description to show)"
-          ) : (
-            <EventsDescription display={viewDescription} />
-          )}
+          <div className="view-description-container">
+            {viewDescription === "" ? (
+              "(No Description to show)"
+            ) : (
+              <EventsDescription display={viewDescription} />
+            )}
           </div>
         </div>
       </div>
