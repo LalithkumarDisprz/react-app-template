@@ -25,7 +25,7 @@ const DeleteDialogueBox = ({ displayDeleteDialogue, events }) => {
 
   return (
     <>
-      <div className="confirmation-box-background">
+      <div className="confirmation-box-background" onClick={(e) => e.stopPropagation()}>
         <div className="display-pop-up" onClick={(e) => e.stopPropagation()}>
           <p>Are you sure You want to delete ?</p>
           <div className="confirmation-button-flex">

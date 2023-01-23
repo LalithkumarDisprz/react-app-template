@@ -204,3 +204,24 @@
     }
   }
 }
+@media screen and (max-width:576px) {
+  .add-events
+  {
+    left: 25px;
+    top:100px;
+    font-size: 12px;
+    padding: 10px;
+    &.plus-update {
+      top: 100px;
+    }
+    .add-events-top-flex
+    {
+      .close-icon
+      {
+        left: 0;
+        font-size: 15px;
+      }
+    }
+  }
+  
+}

@@ -1,16 +1,7 @@
 @import "./style.scss";
 
 .timeline-container {
-  // width: 75%;
-  // width:88%;
-  // position: relative;
-  // top: 100px;
   top: 250px;
-  // left:5px;
-  // right:10px;
-  // left: 385px;
-  // left:20px;
-  // border: 1px solid grey;
   margin-top: 30px;
   border-radius: 4px;
   text-align: center;
@@ -26,7 +17,6 @@
 ::-webkit-scrollbar {
   width: 10px;
   height: 5px;
-  // background-color: black;
 }
 
 ::-webkit-scrollbar-track {
@@ -37,4 +27,12 @@
 ::-webkit-scrollbar-thumb {
   background: grey;
   border-radius: 10px;
+}
+
+@media screen and (max-width: 576px) {
+  .timeline-container {
+    .events-container {
+      padding: 10px;
+    }
+  }
 }

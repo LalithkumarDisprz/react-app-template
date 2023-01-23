@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { apiRequest } from "../../Services/Services";
 import "../../styles/Agenda.scss";
-import { URL_ROUTE, REQUEST_TYPES } from "../../Utils/RequestHeaderEnums";
 import moment from "moment";
 import EventCards from "./EventCards";
 import ScheduledEvents from "./ScheduledEvents";

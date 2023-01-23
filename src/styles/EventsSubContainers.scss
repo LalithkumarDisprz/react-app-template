@@ -1,19 +1,11 @@
 @import "./style.scss";
 
-
 .card-flex {
   display: flex;
   flex-direction: row;
   font-size: 12px;
-  // margin-bottom: 25px;
   height: 60px;
   color: grey;
-  // &::after
-  // {
-  //     content: "\e122";
-  //     color:grey;
-  // }
-
   .events-time {
     position: relative;
     right: 10px;
@@ -23,10 +15,13 @@
   .circle-hover {
     color: $overlay-blue;
   }
-
   .card {
     color: black;
-    background-image: linear-gradient(to right, #777 10%, rgba(255, 255, 255, 0) 0%);
+    background-image: linear-gradient(
+      to right,
+      #777 10%,
+      rgba(255, 255, 255, 0) 0%
+    );
     background-position: top;
     background-size: 8px 1px;
     background-repeat: repeat-x;
@@ -54,14 +49,16 @@
         margin-top: -7px;
         margin-left: -6px;
       }
-
-
     }
-
     .current-time-line-hide {
       z-index: 3;
     }
-
-
+  }
+}
+@media screen and (max-width: 576px) {
+  .card-flex {
+    .card {
+      width: 82%;
+    }
   }
 }

@@ -14,3 +14,15 @@
         color: $overlay-blue;
     }
 }
+
+@media screen and (max-width:576px)
+{
+    .month-container
+    {
+    
+        &:not(.selected-month)
+        {
+            display: none;
+        }
+    }
+}

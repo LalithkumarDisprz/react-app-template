@@ -1,7 +1,7 @@
 import moment from "moment";
 import React, { useState } from "react";
 import "../../styles/Days.scss";
-import DaysOfWeek from "./DaysOfWeek";
+import DaysOfWeek from "./CalenderDays";
 const Days = ({ date, changeDate }) => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const year = new Date(date).getFullYear();
@@ -29,15 +29,7 @@ const Days = ({ date, changeDate }) => {
   };
   return (
     <div className="days">
-      {/* {addPrevDays.map((day, index) => (
-        <DaysOfWeek
-          changeDate={changeNewDate}
-          currentDate={date}
-          otherDays={true}
-          display={day}
-          month="previous-month"
-        />
-      ))} */}
+      
       {addCurrentDays.map((day, index) => (
         <DaysOfWeek
           changeDate={changeNewDate}
@@ -46,14 +38,7 @@ const Days = ({ date, changeDate }) => {
           display={day}
         />
       ))}
-      {/* {addNextDays.map((day, index) => (
-        <DaysOfWeek
-          changeDate={changeNewDate}
-          currentDate={date}
-          otherDays={true}
-          display={day}
-        />
-      ))} */}
+     
     </div>
   );
 };

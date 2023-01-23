@@ -7,14 +7,14 @@
 }
 
 .select-your-events-options {
-    opacity: 0;
     position: absolute;
-    right: 90px;
     height: 0;
-
+    opacity: 0;
+    right: 72px;
     &.display-select-events {
-        top: 92px;
+        top: 81px;
         opacity: 1;
+        // display: block;
         transition: all 0.5s linear;
         background: white;
         list-style: none;
@@ -37,4 +37,24 @@
             background-color: $grey-light;
         }
     }
+}
+
+@media screen and (max-width:576px){
+    .select-your-events-options
+    {
+        right:15px;
+        opacity: 0;
+        &.display-select-events
+        {
+            opacity: 1;
+            top:58px;
+            gap:3px;
+            padding: 5px 0px;
+            width:90px;
+            height: 115px;
+            font-size: 12px;
+            
+        }
+    }
+    
 }

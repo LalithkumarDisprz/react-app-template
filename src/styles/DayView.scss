@@ -3,15 +3,28 @@
 .timeline-events-container {
     // width: 100%;
     padding: 20px 45px;
+    margin: 15px 25px;
     position: relative;
-    left: 60px;
+    // left: 60px;
     height: 100%;
-    top: 30px;
-    width: 93%;
+    // top: 20px;
+    width: 97%;
     border: 1px solid $grey-light;
     border-radius: 15px;
     background-color: $timeline-background;
     // display: flex;
     // position: fixed;
     // top: 100px;
+}
+
+@media screen and (max-width:576px) {
+    .timeline-events-container
+    {
+        left:0px;
+        padding: 20px;
+        top:0px;
+        margin: 10px;
+        width:95%;
+    }
+    
 }

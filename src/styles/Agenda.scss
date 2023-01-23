@@ -45,3 +45,40 @@
   width: 5px;
   height: 5px;
 }
+
+@media screen and (max-width:576px){
+  .agenda-container
+  {
+    .agenda-events-appointments-container
+    {
+      .events-container
+      {
+        padding: 5px;
+        width:65%;
+        gap:10px;
+        .event-card-container
+        {
+          padding: 5px;
+          .events-card
+          {
+            font-size: 14px;
+          }
+        }
+      }
+      .scheduled-events-display
+      {
+        width: 35%;
+        margin-left: 15px;
+        .view-description-container
+        {
+          padding: 10px;
+          width:150px;
+        }
+      }
+    }
+  }
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  
+}

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import "../../styles/DaysOfWeek.scss";
+import "../../styles/CalenderDays.scss"
 import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
-const DaysOfWeek = ({ changeDate, currentDate, otherDays, display }) => {
+const CalenderDays = ({ changeDate, currentDate, otherDays, display }) => {
   const dispatch = useDispatch();
   const date = useSelector((state) => state.datereducer.date);
   const [selectedColor, setSelectedColor] = useState(false);
@@ -38,4 +38,4 @@ const DaysOfWeek = ({ changeDate, currentDate, otherDays, display }) => {
   );
 };
 
-export default DaysOfWeek;
+export default CalenderDays;
