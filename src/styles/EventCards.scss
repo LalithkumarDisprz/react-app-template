@@ -45,3 +45,14 @@
     cursor: pointer;
   }
 }
+@media screen and (max-width:576px) {
+  .event-card-container
+  { .events-card
+    { .time-flex 
+      {
+        font-size: 11px;
+        gap:3px;
+      }
+    }
+  }  
+}

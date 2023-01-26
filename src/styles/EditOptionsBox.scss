@@ -140,11 +140,25 @@
   }
 }
 
-@media screen and (max-width:576px){
-  .edit-options-container
-  {
+@media screen and (max-width: 576px) {
+  .edit-options-container {
     left: 58px;
     width: unset;
-  }
   
+  .edit-options-sub-flex {
+    .title-and-time-display-container {
+      gap:5px;
+      .display-title {
+        font-size: 16px;
+      }
+    }
+  }
+  .edit-update-button
+  {
+  button
+  {
+    padding: 5px;
+  }
+}
+}
 }

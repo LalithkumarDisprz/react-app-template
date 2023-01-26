@@ -3,7 +3,7 @@
 .timeline-top-container {
   box-shadow: 0px 2px 0px $grey-light;
   z-index: 2;
-
+  border-radius: 4px;
   .timeline-top-column-flex {
     display: flex;
     flex-direction: column;
@@ -84,7 +84,7 @@
       }
       .create-icon {
         position: relative;
-        left: 360px;
+        left: 385px;
         @include button-style;
         border-color: transparent;
         background-color: $yellow-secondary;
@@ -146,21 +146,22 @@
             font-size: 12px;
           }
 
+          // .hamburger-icon {
+          //   display: block;
+          //   position: relative;
+          //   right: 150px;
+          // }
           .hamburger-icon {
             display: block;
             position: relative;
-            right: 150px;
-          }
-          .down-icon {
-            display: block;
-            position: relative;
-            right: 140px;
+            right: 155px;
             font-size: 20px;
 
           }
           .agenda-timeline-toggle {
             position: relative;
             display: none;
+            font-size:12px;
             &.drop-down {
               display: flex;
               flex-direction: column;
@@ -169,10 +170,10 @@
               background: white;
               z-index:9;
               top: 45px;
-              left: 31px;
+              left: 18px;
               padding: 10px;;
               box-shadow: 0px 2px 7px $black-shadow;
-              height: 70px;
+              height: 60px;
             }
             .timeline-title {
               right: 0px;

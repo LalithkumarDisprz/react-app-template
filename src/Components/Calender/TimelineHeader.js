@@ -80,7 +80,7 @@ const TimelineHeader = ({changeTimeLine}) => {
                 Today
               </button>
               {/* <FontAwesomeIcon icon={faBars} className="hamburger-icon" onClick={()=>setToggleDown(!toggleDown)}/> */}
-              <FontAwesomeIcon icon={faBars} className="down-icon" onClick={()=>setToggleDown(!toggleDown)}/>
+              <FontAwesomeIcon icon={faBars} className="hamburger-icon" onClick={()=>setToggleDown(!toggleDown)}/>
               <div className={`agenda-timeline-toggle ${toggleDown &&"drop-down"}`}>
                  
               <div className={`timeline-title ${view ? "selected-view " :""} `} onClick={()=>changeAgenda(true)}>TimeLine</div>

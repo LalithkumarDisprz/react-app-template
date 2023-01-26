@@ -1,0 +1,35 @@
+@import './style.scss';
+
+.preview-background
+{
+    @include background;
+    background-color:$white-transparent;
+    z-index:101;
+}
+.preview-container
+{
+    @include pop-up;
+    z-index:105;
+    position: absolute;
+    box-shadow: 0px 2px 7px $black-shadow;
+    width: unset;
+    top: 60px;
+    left: 70px;
+    .preview-img
+    {
+        width: 200px;
+        height: 200px;
+    }
+    .preview-pdf
+    {
+        border:1px solid transparent;
+        box-shadow: 0px 2px 5px $black-shadow;
+        color: black;
+        text-decoration: none;
+        padding: 5px;
+    }
+    .preview-buttons
+    {
+        justify-content: center;
+    }
+}

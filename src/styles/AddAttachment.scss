@@ -1,0 +1,24 @@
+@import "./style.scss";
+
+.attachment-container
+{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+.clip-icon {
+  color: $grey-primary;
+}
+.attachment-button {
+  border: transparent;
+  color: $grey-primary;
+  background-color: #fff;
+  &:hover {
+    color: $black-primary;
+    cursor: pointer;
+  }
+}
+  .input-hide-button {
+    display: none;
+  }
+}

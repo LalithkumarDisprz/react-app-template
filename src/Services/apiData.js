@@ -2,6 +2,7 @@ import { apiRequest } from "./Services";
 import { REQUEST_TYPES } from "../Utils/RequestHeaderEnums";
 import { URL_ROUTE } from "../Utils/RequestHeaderEnums";
 export const postAppointment = (data) => {
+  console.log(data,"ok")
   return apiRequest({
     url: "",
     method: REQUEST_TYPES.POST,
@@ -32,9 +33,9 @@ export const updateAppointment = (data) => {
   });
 };
 
-export const getAppointmentsForWeek = (data) => {
+export const getAppointmentsForWeek = (start,end) => {
   return apiRequest({
-    url: `/${URL_ROUTE.RANGE}/${data}`,
+    url: `/${URL_ROUTE.RANGE}/${start}/${end}`,
     method: REQUEST_TYPES.GET,
   });
 };

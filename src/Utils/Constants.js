@@ -25,6 +25,7 @@ export const month = [
   "December",
 ];
 export const options = {
+  ok:"Ok",
   delete: "Delete",
   edit: "Edit",
   cancel: "Cancel",
@@ -36,3 +37,5 @@ export const eventHeaders = {
   endtime: "EndTime",
 };
 export const meeting_Error = "Error occured while adding Date";
+
+export const invalid_id="Cannot process with given id or data"

@@ -2,7 +2,7 @@
 
 .select-events-background {
     @include background;
-    background-color: rgb(64 63 63 / 6%);
+    background-color: $white-transparent;
     //    background-color:rgb(244, 240, 240);
 }
 
@@ -10,11 +10,12 @@
     position: absolute;
     height: 0;
     opacity: 0;
+    pointer-events: none;
     right: 72px;
     &.display-select-events {
-        top: 81px;
+        top: 75px;
         opacity: 1;
-        // display: block;
+        pointer-events: all;
         transition: all 0.5s linear;
         background: white;
         list-style: none;

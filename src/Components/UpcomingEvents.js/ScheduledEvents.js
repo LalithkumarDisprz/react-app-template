@@ -7,7 +7,7 @@ const ScheduledEvents = ({events}) => {
     <div className='scheduled-events-container'>
       <FontAwesomeIcon icon={faCalendarWeek} size={'xl'} className="calender-icon"/>
       <div>{events.length}</div>
-      <div className='remaining-events'>Remaining Appointments for the week</div>
+      <div className='remaining-events'>Remaining Events for the week</div>
       </div>
   )
 }

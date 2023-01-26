@@ -3,45 +3,59 @@ import { useContext } from "react";
 import "../../styles/AddEvents.scss";
 import ReactDOM from "react-dom";
 import TextareaAutosize from "react-textarea-autosize";
-import { UserContext } from "../EventContainer/EventContents";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { ADD_POST, CHANGE_DATE, createAction } from "../../redux/actions";
 import ErrorDialogueBox from "./ErrorDialogueBox";
-import moment from "moment";
-import { REQUEST_TYPES } from "../../Utils/RequestHeaderEnums";
-import { meeting_Error } from "../../Utils/Constants";
+import { invalid_id, meeting_Error } from "../../Utils/Constants";
 import { updateApi, updateAppointment } from "../../Services/apiData";
+import AddAttachments from "./AddAttachments";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClose } from "@fortawesome/free-solid-svg-icons";
 const UpdateDialogueBox = ({ updateEvent, closeUpdateBox }) => {
-  // const  = useContext(UserContext);
-  const type = updateEvent.type;
+  const [displayAttachment, setOpenAttachment] = useState(false);
   const date = useSelector((state) => state.datereducer.date);
   const [dialogueBox, setDialogueBox] = useState(false);
   const [displayStatus, setDisplayStatus] = useState("");
   const [displayError, setDisplayError] = useState(" ");
-  const [typeOfEvent, setType] = useState(type);
+  const [attachmentName, setAttachmentName] = useState(updateEvent.appointmentAttachment.contentName);
+  const [attachmentType, setAttachmentType] = useState(updateEvent.appointmentAttachment.contentType);
+  const [typeOfEvent, setType] = useState(updateEvent.type);
   const dispatch = useDispatch();
   const [update, setUpdate] = useState(false);
-  const [events, setEvents] = useState({
+  const [event, setEvent] = useState({
     title: updateEvent.title,
     description: updateEvent.description,
+    attachment: updateEvent.appointmentAttachment.content,
     start: updateEvent.startTime,
     end: updateEvent.endTime,
   });
   const closeErrorDialogueBox = () => {
     setDialogueBox(false);
   };
+  const getAttachmentName = (name) => {
+    console.log(name);
+    setAttachmentName(name);
+  };
+  const getAttachmentType = (typeOfData) => {
+    console.log(typeOfData, "hh");
+    setAttachmentType(typeOfData);
+  };
   const handleClick = async (e) => {
-    if (events.title.replace(/\s/g, "") !== "") {
+    if (event.title.replace(/\s/g, "") !== "") {
       const data = {
         appointment: {
           id: updateEvent.id,
-          date: events.start,
-          title: events.title,
-          description: events.description,
+          date: event.start,
+          title: event.title,
+          description: event.description,
           type: typeOfEvent,
-          startTime: events.start,
-          endTime: events.end,
+          startTime: event.start,
+          endTime: event.end,
+          appointmentAttachment: {
+            content: event.attachment,
+            contentName: attachmentName,
+            contentType: attachmentType,
+          },
         },
         oldDate: updateEvent.date,
       };
@@ -54,6 +68,11 @@ const UpdateDialogueBox = ({ updateEvent, closeUpdateBox }) => {
         dispatch(createAction(CHANGE_DATE, date));
         closeUpdateBox();
       } else {
+        if (response.status === 404) {
+          setDisplayStatus(invalid_id);
+          setDialogueBox(true);
+          setDisplayError(JSON.parse(response.data).message);
+        }
         setDisplayStatus(meeting_Error);
         setDialogueBox(true);
         setDisplayError(JSON.parse(response.data).message);
@@ -62,18 +81,29 @@ const UpdateDialogueBox = ({ updateEvent, closeUpdateBox }) => {
   };
   const updateDescription = (e) => {
     e.preventDefault();
-    setEvents({ ...events, description: e.target.value });
+    setEvent({ ...event, description: e.target.value });
   };
   const updateTitle = (e) => {
     e.preventDefault();
-    setEvents({ ...events, title: e.target.value });
+    setEvent({ ...event, title: e.target.value });
   };
   const updateStart = (e) => {
-    setEvents({ ...events, start: e.target.value });
+    setEvent({ ...event, start: e.target.value });
   };
   const updateEnd = (e) => {
-    setEvents({ ...events, end: e.target.value });
+    setEvent({ ...event, end: e.target.value });
   };
+  const attachmentData = (value) => {
+    setEvent({ ...event, attachment: value });
+  };
+  const openAttachment = () => {
+    setOpenAttachment(!displayAttachment);
+    setEvent({ ...event, attachment: null });
+    setAttachmentName(null);
+    setAttachmentType(null);
+  };
+  console.log(event.attachment,"atf")
+  console.log(displayAttachment)
   return ReactDOM.createPortal(
     <>
       <div
@@ -123,7 +153,7 @@ const UpdateDialogueBox = ({ updateEvent, closeUpdateBox }) => {
             maxRows={4}
             type="text"
             placeholder="Add Event Name"
-            value={events.title}
+            value={event.title}
             onChange={updateTitle}
             className="text-area"
           />
@@ -135,17 +165,54 @@ const UpdateDialogueBox = ({ updateEvent, closeUpdateBox }) => {
             maxRows={4}
             type="text"
             placeholder="Add Description"
-            value={events.description}
+            value={event.description}
             onChange={updateDescription}
             className="text-area"
           />
         </div>
+        {event.attachment !==null ? (
+          !displayAttachment ? (
+            <div className={`date-pick `}>
+              <a href={event.attachment} className="added-attachment">
+                {attachmentName}
+              </a>
+              <FontAwesomeIcon
+                onClick={openAttachment}
+                icon={faClose}
+                className="close-icon-hover"
+              />
+            </div>
+          ) :  attachmentType===null?(
+            <div className="date-pick">
+              <AddAttachments
+                boxName="update"
+                getData={attachmentData}
+                getType={getAttachmentType}
+                getName={getAttachmentName}
+              />
+            </div>
+          ) 
+          : (
+            <div className="date-pick">
+              <a href={event.attachment} className="added-attachment">{attachmentName}</a>
+            </div>
+          )
+        ) : (
+          <div className="date-pick">
+          <AddAttachments
+            boxName="update"
+            getData={attachmentData}
+            getType={getAttachmentType}
+            getName={getAttachmentName}
+          />
+        </div>
+        )}
         <div className="date-pick">
           <div className="title-container">
             <div className="add-time">Start-time</div>
             <input
               type="datetime-local"
-              value={events.start}
+              value={event.start}
               onChange={updateStart}
             />
           </div>
@@ -153,7 +220,7 @@ const UpdateDialogueBox = ({ updateEvent, closeUpdateBox }) => {
             <div className="add-time">End-time</div>
             <input
               type="datetime-local"
-              value={events.end}
+              value={event.end}
               onChange={updateEnd}
             />
           </div>

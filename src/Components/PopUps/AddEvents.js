@@ -3,38 +3,57 @@ import axios from "axios";
 import ReactDOM from "react-dom";
 import "../../styles/AddEvents.scss";
 import moment from "moment";
-import { apiRequest } from "../../Services/Services";
-import { REQUEST_TYPES } from "../../Utils/RequestHeaderEnums";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faClose,
   faMinus,
+  faPaperclip,
   faPlus,
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
+import { useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import TextareaAutosize from "react-textarea-autosize";
 import { ADD_POST, CHANGE_DATE, createAction } from "../../redux/actions";
 import ErrorDialogueBox from "./ErrorDialogueBox";
 import { meeting_Error } from "../../Utils/Constants";
 import { postAppointment } from "../../Services/apiData";
+import AddAttachments from "./AddAttachments";
 const AddEvents = (props) => {
+  const inputFocus = useRef(null);
   const [typeOfEvent, setType] = useState(props.type);
   const dispatch = useDispatch();
   const [dialogueBox, setDialogueBox] = useState(false);
+  const [attachmentType, setAttachmentType] = useState(null);
+  const [attachmentName, setAttachmentName] = useState(null);
+  // const [title,setTitle]=useState("")
+  // const [startTime,setStartTime]=useState(moment(props.eventDate).format("yyyy-MM-DDTHH:mm"))
+  // const [description,setDescription]=useState("")
+  // const [endTime,setEndTime]=useState(moment(props.eventDate).add(30, "minutes").format("yyyy-MM-DDTHH:mm"))
   const [status, setStatus] = useState(" ");
   const [displayError, setDisplayError] = useState("");
   const [postCall, setPost] = useState(false);
   const [newEvent, setNewEvent] = useState({
     title: "",
     description: "",
+    attachment: null,
     start: moment(props.eventDate).format("yyyy-MM-DDTHH:mm"),
     end: moment(props.eventDate).add(30, "minutes").format("yyyy-MM-DDTHH:mm"),
   });
-  const newDate = useSelector((state) => state.datereducer.date);
-  // const monthDate = moment(newEvent.start).format("yyyy-MM-DD");
   const closeEvent = (e) => {
     props.close();
+  };
+  const attachmentData = (value, typeOfData, name) => {
+    console.log(value);
+    setNewEvent({ ...newEvent, attachment: value });
+  };
+  const getAttachmentName = (name) => {
+    console.log(name);
+    setAttachmentName(name);
+  };
+  const getAttachmentType = (typeOfData) => {
+    console.log(typeOfData, "hh");
+    setAttachmentType(typeOfData);
   };
   const addTitle = (e) => {
     setNewEvent({ ...newEvent, title: e.target.value });
@@ -51,8 +70,13 @@ const AddEvents = (props) => {
   const closeErrorDialogueBox = () => {
     setDialogueBox(false);
   };
+  const removeAttachment = () => {
+    setAttachmentName("");
+    setAttachmentType("");
+    setNewEvent({ ...newEvent, attachment: null });
+  };
   const handleClick = async () => {
-    if (newEvent.title.replace(/\s/g, "") !== "" ) {
+    if (newEvent.title.replace(/\s/g, "") !== "") {
       const data = {
         date: newEvent.start,
         title: newEvent.title,
@@ -60,6 +84,11 @@ const AddEvents = (props) => {
         type: typeOfEvent,
         startTime: newEvent.start,
         endTime: newEvent.end,
+        appointmentAttachment: {
+          content: newEvent.attachment,
+          contentType: attachmentType,
+          contentName: attachmentName,
+        },
       };
       var response = await postAppointment(data);
       if (response.status === 201) {
@@ -74,6 +103,8 @@ const AddEvents = (props) => {
         setDialogueBox(true);
         setDisplayError(JSON.parse(response.data).message);
       }
+    } else {
+      inputFocus.current.focus();
     }
   };
   return ReactDOM.createPortal(
@@ -117,6 +148,7 @@ const AddEvents = (props) => {
         <div className="title-container">
           <div className="add-title">Title</div>
           <TextareaAutosize
+            ref={inputFocus}
             minRows={1}
             maxRows={4}
             type="text"
@@ -131,6 +163,7 @@ const AddEvents = (props) => {
           <TextareaAutosize
             minRows={3}
             maxRows={4}
+            required
             type="text"
             placeholder="Add Description"
             value={newEvent.description}
@@ -138,6 +171,23 @@ const AddEvents = (props) => {
             className="text-area"
           />
         </div>
+        {newEvent.attachment === null ? (
+          <div className="date-pick">
+            <AddAttachments
+              boxName="addevents"
+              getData={attachmentData}
+              getType={getAttachmentType}
+              getName={getAttachmentName}
+            />
+          </div>
+        ) : (
+          <div className="date-pick">
+            <a href={newEvent.attachment} className="added-attachment">
+              {attachmentName}
+            </a>
+            <FontAwesomeIcon icon={faClose} onClick={removeAttachment} className="close-icon-hover" />
+          </div>
+        )}
         <div className="date-pick">
           <div className="title-container">
             <div className="add-time">Start-time</div>
