@@ -29,7 +29,6 @@ const Days = ({ date, changeDate }) => {
   };
   return (
     <div className="days">
-      
       {addCurrentDays.map((day, index) => (
         <DaysOfWeek
           changeDate={changeNewDate}
@@ -38,7 +37,6 @@ const Days = ({ date, changeDate }) => {
           display={day}
         />
       ))}
-     
     </div>
   );
 };

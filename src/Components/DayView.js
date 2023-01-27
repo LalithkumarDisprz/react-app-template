@@ -6,19 +6,19 @@ import TimelineHeader from "./Calender/TimelineHeader";
 import Agenda from "./UpcomingEvents.js/Agenda";
 
 const DayView = () => {
-  const [displayTimeLine,setDisplayTimeLine]=useState(true);
-  const changeTimeLine=(value)=>
-  {
-    
+  const [displayTimeLine, setDisplayTimeLine] = useState(true);
+  const changeTimeLine = (value) => {
     setDisplayTimeLine(value);
-  }
+  };
   return (
     <div>
       <div className="timeline-events-container">
-        <TimelineHeader changeTimeLine={changeTimeLine}/>
-        {displayTimeLine
-        ?
-        <EventsContainer /> : <Agenda state={displayTimeLine}/>}
+        <TimelineHeader changeTimeLine={changeTimeLine} />
+        {displayTimeLine ? (
+          <EventsContainer />
+        ) : (
+          <Agenda state={displayTimeLine} />
+        )}
       </div>
     </div>
   );

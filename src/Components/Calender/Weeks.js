@@ -9,7 +9,6 @@ const Weeks = () => {
   let weekdayname = day.map((dayList, index) => {
     return <li>{dayList}</li>;
   });
-
   return <ul className="weeks">{weekdayname}</ul>;
 };
 

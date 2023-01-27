@@ -1,6 +1,7 @@
 import React, { useCallback, useState, useEffect } from "react";
 import axios from "axios";
 import ReactDOM from "react-dom";
+import { eventHeaders, eventTypes, options } from "../../Utils/Constants";
 import "../../styles/AddEvents.scss";
 import moment from "moment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -26,10 +27,6 @@ const AddEvents = (props) => {
   const [dialogueBox, setDialogueBox] = useState(false);
   const [attachmentType, setAttachmentType] = useState(null);
   const [attachmentName, setAttachmentName] = useState(null);
-  // const [title,setTitle]=useState("")
-  // const [startTime,setStartTime]=useState(moment(props.eventDate).format("yyyy-MM-DDTHH:mm"))
-  // const [description,setDescription]=useState("")
-  // const [endTime,setEndTime]=useState(moment(props.eventDate).add(30, "minutes").format("yyyy-MM-DDTHH:mm"))
   const [status, setStatus] = useState(" ");
   const [displayError, setDisplayError] = useState("");
   const [postCall, setPost] = useState(false);
@@ -43,7 +40,11 @@ const AddEvents = (props) => {
   const closeEvent = (e) => {
     props.close();
   };
-  const attachmentData = (value, typeOfData, name) => {
+  const setEventType=(value)=>
+  {
+      setType(value);
+  }
+  const attachmentData = (value) => {
     console.log(value);
     setNewEvent({ ...newEvent, attachment: value });
   };
@@ -112,7 +113,7 @@ const AddEvents = (props) => {
       <div className="add-events-background" onClick={closeEvent}></div>
       <div className="add-events">
         <div className="add-events-top-flex">
-          <div>Add Schedule</div>
+          <div>{options.addEvents}</div>
           <div className="close-icon">
             <FontAwesomeIcon icon={faXmark} size={"xl"} onClick={closeEvent} />
           </div>
@@ -124,7 +125,7 @@ const AddEvents = (props) => {
               setType("Event");
             }}
           >
-            Events
+            {eventTypes.event}
           </div>
           <div
             className={`${typeOfEvent === "Reminder" && "type-event"} events`}
@@ -132,7 +133,7 @@ const AddEvents = (props) => {
               setType("Reminder");
             }}
           >
-            Reminder
+            {eventTypes.reminder}
           </div>
           <div
             className={`${
@@ -142,11 +143,11 @@ const AddEvents = (props) => {
               setType("Out of office");
             }}
           >
-            Out of office
+            {eventTypes.outOfOffice}
           </div>
         </div>
         <div className="title-container">
-          <div className="add-title">Title</div>
+          <div className="add-title">{eventHeaders.title}</div>
           <TextareaAutosize
             ref={inputFocus}
             minRows={1}
@@ -159,7 +160,7 @@ const AddEvents = (props) => {
           />
         </div>
         <div className="title-container">
-          <div className="add-description">Description</div>
+          <div className="add-description">{eventHeaders.description}</div>
           <TextareaAutosize
             minRows={3}
             maxRows={4}
@@ -185,12 +186,16 @@ const AddEvents = (props) => {
             <a href={newEvent.attachment} className="added-attachment">
               {attachmentName}
             </a>
-            <FontAwesomeIcon icon={faClose} onClick={removeAttachment} className="close-icon-hover" />
+            <FontAwesomeIcon
+              icon={faClose}
+              onClick={removeAttachment}
+              className="close-icon-hover"
+            />
           </div>
         )}
         <div className="date-pick">
           <div className="title-container">
-            <div className="add-time">Start-time</div>
+            <div className="add-time">{eventHeaders.starttime}</div>
             <input
               type="datetime-local"
               value={newEvent.start}
@@ -199,7 +204,7 @@ const AddEvents = (props) => {
             />
           </div>
           <div className="title-container">
-            <div className="add-time">End-time</div>
+            <div className="add-time">{eventHeaders.endtime}</div>
             <input
               type="datetime-local"
               value={newEvent.end}
@@ -210,10 +215,10 @@ const AddEvents = (props) => {
         </div>
         <div className="button-flex ok-and-close-button">
           <button onClick={handleClick} className="ok-button">
-            ADD
+            {options.add}
           </button>
           <button onClick={closeEvent} className="cancel-button">
-            Cancel
+            {options.cancel}
           </button>
         </div>
         {newEvent.title.replace(/\s/g, "") === "" ? "Please Add a title" : " "}

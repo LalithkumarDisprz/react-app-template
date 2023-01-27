@@ -18,15 +18,14 @@ import Months from "./Months";
 import Days from "./Days";
 import AddEventsButton from "../AddEventsButton";
 
-const TimelineHeader = ({changeTimeLine}) => {
-
+const TimelineHeader = ({ changeTimeLine }) => {
   const dispatch = useDispatch();
   const [view, setView] = useState(true);
   const selectedDate = useSelector((state) => state.datereducer.date);
   const [eventDate, setEventDate] = useState(new Date());
   const prevDate = useSelector((state) => state.datereducer.date);
   const [date, setCurrentDate] = useState(new Date());
-  const [toggleDown,setToggleDown]=useState(false)
+  const [toggleDown, setToggleDown] = useState(false);
   const changeToday = () => {
     if (selectedDate !== new Date().toDateString())
       dispatch(createAction(CHANGE_DATE, new Date().toDateString()));
@@ -64,11 +63,10 @@ const TimelineHeader = ({changeTimeLine}) => {
     const selectedMonth = month.indexOf(newMonth);
     setCurrentDate(new Date(date.setMonth(selectedMonth)));
   };
-  const changeAgenda=(value)=>
-  {
+  const changeAgenda = (value) => {
     changeTimeLine(value);
     setView(!view);
-  }
+  };
   return (
     <>
       <div className="timeline-top-container">
@@ -79,12 +77,28 @@ const TimelineHeader = ({changeTimeLine}) => {
               <button className="today-button" onClick={changeToday}>
                 Today
               </button>
-              {/* <FontAwesomeIcon icon={faBars} className="hamburger-icon" onClick={()=>setToggleDown(!toggleDown)}/> */}
-              <FontAwesomeIcon icon={faBars} className="hamburger-icon" onClick={()=>setToggleDown(!toggleDown)}/>
-              <div className={`agenda-timeline-toggle ${toggleDown &&"drop-down"}`}>
-                 
-              <div className={`timeline-title ${view ? "selected-view " :""} `} onClick={()=>changeAgenda(true)}>TimeLine</div>
-              <div className={`event-title ${!view ? "selected-view " :""} `} onClick={()=>changeAgenda(false)}>Upcoming Events</div>
+              <FontAwesomeIcon
+                icon={faBars}
+                className="hamburger-icon"
+                onClick={() => setToggleDown(!toggleDown)}
+              />
+              <div
+                className={`agenda-timeline-toggle ${
+                  toggleDown && "drop-down"
+                }`}
+              >
+                <div
+                  className={`timeline-title ${view ? "selected-view " : ""} `}
+                  onClick={() => changeAgenda(true)}
+                >
+                  TimeLine
+                </div>
+                <div
+                  className={`event-title ${!view ? "selected-view " : ""} `}
+                  onClick={() => changeAgenda(false)}
+                >
+                  Upcoming Events
+                </div>
               </div>
             </div>
             <div className="title">Schedule Your Events</div>
@@ -112,7 +126,11 @@ const TimelineHeader = ({changeTimeLine}) => {
             />
           </div>
           <div className="icon-flex month-view">
-            <FontAwesomeIcon icon={faChevronLeft} onClick={decreaseMonth} className="chevron-left-icon" />
+            <FontAwesomeIcon
+              icon={faChevronLeft}
+              onClick={decreaseMonth}
+              className="chevron-left-icon"
+            />
             {month.map((month, index) => (
               <Months
                 month={month}
@@ -121,7 +139,11 @@ const TimelineHeader = ({changeTimeLine}) => {
                 changeEventMonth={changeEventMonth}
               />
             ))}
-            <FontAwesomeIcon icon={faChevronRight} onClick={increaseMonth} className="chevron-right-icon"/>
+            <FontAwesomeIcon
+              icon={faChevronRight}
+              onClick={increaseMonth}
+              className="chevron-right-icon"
+            />
           </div>
 
           <div className="icon-flex date-view">

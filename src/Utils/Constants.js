@@ -24,18 +24,29 @@ export const month = [
   "November",
   "December",
 ];
+
 export const options = {
-  ok:"Ok",
+  ok: "Ok",
+  add:"ADD",
   delete: "Delete",
   edit: "Edit",
   cancel: "Cancel",
+  addEvents:"Add Schedule",
+  update:"Update events",
+  up:"Update"
 };
 export const eventHeaders = {
   title: "Title",
   description: "Description",
-  starttime: " StartTime",
-  endtime: "EndTime",
+  starttime: " Start-time",
+  endtime: "End-time",
+  addAttachments:"Add Attachments"
 };
+export const eventTypes={
+  event:"Events",
+  reminder:"Reminder",
+  outOfOffice:"Out of office",
+}
 export const meeting_Error = "Error occured while adding Date";
 
-export const invalid_id="Cannot process with given id or data"
+export const invalid_id = "Cannot process with given id or data";

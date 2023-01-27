@@ -1,23 +1,19 @@
-import React, { useState, useContext, useEffect } from "react";
+import React from "react";
 import { options } from "../../Utils/Constants";
 import "../../styles/EditOptionsBox.scss";
-import { UserContext } from "./EventContents";
-// import useScrollLock from '../useScrollLock'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faXmark,
-  faTrash,
   faPen,
   faTrashCan,
   faFileLines,
 } from "@fortawesome/free-solid-svg-icons";
-import { eventsAction } from "../../redux/actions";
 import moment from "moment";
 const EditOptionsBox = ({
   displayUpdateDialogue,
   displayDeleteDialogue,
   closeEditOptions,
-  events
+  events,
 }) => {
   return (
     <>

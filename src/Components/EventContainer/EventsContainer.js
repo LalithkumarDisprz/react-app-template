@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import "../../styles/EventsContainer.scss";
 import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
 import { getAppointment } from "../../Services/apiData";
 import { CHANGE_EVENTS, eventsAction } from "../../redux/actions";
 import EventSubContainers from "./EventSubContainers";

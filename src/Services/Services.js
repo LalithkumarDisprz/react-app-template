@@ -13,13 +13,10 @@ export const apiRequest = async (options) => {
   });
 
   const onSuccess = (response) => {
-  
     return response;
   };
   const onError = (error) => {
-    return(error.response);
+    return error.response;
   };
   return client(options).then(onSuccess).catch(onError);
 };
-
-

@@ -1,17 +1,15 @@
 import React, { useState } from "react";
-import "../../styles/CalenderDays.scss"
+import "../../styles/CalenderDays.scss";
 import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
 const CalenderDays = ({ changeDate, currentDate, otherDays, display }) => {
   const dispatch = useDispatch();
   const date = useSelector((state) => state.datereducer.date);
-  const [selectedColor, setSelectedColor] = useState(false);
   const changeNewDate = (e) => {
     if (otherDays !== true) {
       changeDate(e.target.value);
     }
   };
-
   return (
     <>
       <input

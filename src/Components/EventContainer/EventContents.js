@@ -3,9 +3,8 @@ import React, { useState } from "react";
 import { createContext } from "react";
 import "../../styles/EventContents.scss";
 import EditOptionsBox from "./EditOptionsBox";
-import UpdateDialogueBox from "../PopUps/UpdateDialogueBox";
 import DeleteDialogueBox from "../PopUps/DeleteDialogueBox";
-export const UserContext = createContext();
+import UpdateEvents from "../PopUps/UpdateEvents";
 const EventContents = ({ events, changeIndexOfTimeline }) => {
   const [displayUpdateBox, setDisplayUpdateBox] = useState(false);
   const [displayDeleteBox, setDisplayDeleteBox] = useState(false);
@@ -55,7 +54,6 @@ const EventContents = ({ events, changeIndexOfTimeline }) => {
   };
   const displayUpdateDialogue = () => {
     setDisplayUpdateBox(!displayUpdateBox);
-
     setEditOptions(false);
     changeIndexOfTimeline(false);
   };
@@ -110,7 +108,7 @@ const EventContents = ({ events, changeIndexOfTimeline }) => {
         " "
       )}
       {displayUpdateBox ? (
-        <UpdateDialogueBox
+        <UpdateEvents
           updateEvent={events}
           closeUpdateBox={displayUpdateDialogue}
         />
@@ -130,11 +128,3 @@ const EventContents = ({ events, changeIndexOfTimeline }) => {
 };
 
 export default EventContents;
-
-//  { moment(events.startTime).format("HH") <
-//   moment(events.endTime).format("HH")
-//     ? timeToDecimal(endToDecimal) ===
-//       timeToDecimal(startToDecimal) + difference
-//       ? `calc(${100 * difference}% - 2px)`
-//       : `calc(${correctedHeight}% + ${pixel - 2}px)`
-//     : `calc((${correctedHeight}% -  ${additionalPixel - 2}px)`,}

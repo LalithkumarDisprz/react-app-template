@@ -1,13 +1,8 @@
 import React, { useState } from "react";
 import { options } from "../../Utils/Constants";
-import { useContext } from "react";
 import "../../styles/DeleteDialogueBox.scss";
-import { UserContext } from "../EventContainer/EventContents";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
 import { ADD_POST, CHANGE_DATE, createAction } from "../../redux/actions";
-import { apiRequest } from "../../Services/Services";
-import { REQUEST_TYPES } from "../../Utils/RequestHeaderEnums";
 import { deleteAppointment } from "../../Services/apiData";
 const DeleteDialogueBox = ({ displayDeleteDialogue, events }) => {
   const dispatch = useDispatch();
@@ -25,7 +20,10 @@ const DeleteDialogueBox = ({ displayDeleteDialogue, events }) => {
 
   return (
     <>
-      <div className="confirmation-box-background" onClick={(e) => e.stopPropagation()}>
+      <div
+        className="confirmation-box-background"
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className="display-pop-up" onClick={(e) => e.stopPropagation()}>
           <p>Are you sure You want to delete ?</p>
           <div className="confirmation-button-flex">
