@@ -40,20 +40,19 @@ const AddEvents = (props) => {
   const closeEvent = (e) => {
     props.close();
   };
-  const setEventType=(value)=>
-  {
-      setType(value);
-  }
+  const setEventType = (value) => {
+    setType(value);
+  };
   const attachmentData = (value) => {
-    console.log(value);
+   
     setNewEvent({ ...newEvent, attachment: value });
   };
   const getAttachmentName = (name) => {
-    console.log(name);
+    
     setAttachmentName(name);
   };
   const getAttachmentType = (typeOfData) => {
-    console.log(typeOfData, "hh");
+    
     setAttachmentType(typeOfData);
   };
   const addTitle = (e) => {
@@ -77,7 +76,7 @@ const AddEvents = (props) => {
     setNewEvent({ ...newEvent, attachment: null });
   };
   const handleClick = async () => {
-    if (newEvent.title.replace(/\s/g, "") !== "") {
+    if (newEvent.title.replace(/\s/g, "") !== "" && newEvent.start!==null && newEvent.end!==null) {
       const data = {
         date: newEvent.start,
         title: newEvent.title,
@@ -93,7 +92,7 @@ const AddEvents = (props) => {
       };
       var response = await postAppointment(data);
       if (response.status === 201) {
-        console.log(response, "response");
+     
         setPost(response.data);
         dispatch({
           type: ADD_POST,

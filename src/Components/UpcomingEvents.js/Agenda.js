@@ -13,8 +13,6 @@ const Agenda = ({ state }) => {
   const date = useSelector((state) => state.datereducer.date);
   const startRange = moment(date).format("yyyy-MM-DDTHH:mm:ss");
   const endRange = moment(date).add(7, "days").format("yyyy-MM-DDTHH:mm:ss");
-
-  console.log(endRange);
   const [upcomingEvents, setUpcomingEvents] = useState([]);
   const [viewDescription, setViewDescription] = useState("");
   const [viewAttachment, setViewAttachment] = useState(null);
@@ -28,7 +26,7 @@ const Agenda = ({ state }) => {
   const sendDescription = (text, content) => {
     setViewDescription(text);
     setViewAttachment(content);
-    console.log(content);
+    
   };
   return (
     <div className="agenda-container">

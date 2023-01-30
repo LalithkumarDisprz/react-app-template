@@ -1,17 +1,14 @@
-import "./styles/App.scss"
+import "./styles/App.scss";
 import DayView from "./Components/DayView";
-
 
 function App() {
   return (
     <>
-    <div >
-      <DayView/>
-     
-    </div>
+      <div>
+        <DayView />
+      </div>
     </>
   );
 }
-
 
 export default App;

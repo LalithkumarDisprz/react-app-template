@@ -20,7 +20,7 @@ const PreviewAttachment = ({ previewOptions, media, typeOfFile, name }) => {
               previewOptions(true);
             }}
           >
-            Upload
+            {options.upload}
           </button>
           <button
             className="cancel-button"

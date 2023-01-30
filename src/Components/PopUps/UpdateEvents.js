@@ -44,7 +44,7 @@ const UpdateEvents = ({ updateEvent, closeUpdateBox }) => {
     setAttachmentType(typeOfData);
   };
   const handleClick = async (e) => {
-    if (event.title.replace(/\s/g, "") !== "") {
+    if (event.title.replace(/\s/g, "") !== "" && event.start!==null && event.end!==null) {
       const data = {
         appointment: {
           id: updateEvent.id,

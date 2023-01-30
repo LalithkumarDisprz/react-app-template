@@ -12,7 +12,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { CHANGE_STATE, CHANGE_DATE, createAction } from "../../redux/actions";
-import { month } from "../../Utils/Constants";
+import { month, timeLine } from "../../Utils/Constants";
 import "../../styles/TimelineHeader.scss";
 import Months from "./Months";
 import Days from "./Days";
@@ -75,7 +75,7 @@ const TimelineHeader = ({ changeTimeLine }) => {
             <div className="current-date-today">
               <div className="current-date">{selectedDate}</div>
               <button className="today-button" onClick={changeToday}>
-                Today
+                {timeLine.today}
               </button>
               <FontAwesomeIcon
                 icon={faBars}
@@ -91,13 +91,13 @@ const TimelineHeader = ({ changeTimeLine }) => {
                   className={`timeline-title ${view ? "selected-view " : ""} `}
                   onClick={() => changeAgenda(true)}
                 >
-                  TimeLine
+                 {timeLine.timeline}
                 </div>
                 <div
                   className={`event-title ${!view ? "selected-view " : ""} `}
                   onClick={() => changeAgenda(false)}
                 >
-                  Upcoming Events
+                  {timeLine.upcoming}
                 </div>
               </div>
             </div>

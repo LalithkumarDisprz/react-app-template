@@ -2,7 +2,7 @@ import { apiRequest } from "./Services";
 import { REQUEST_TYPES } from "../Utils/RequestHeaderEnums";
 import { URL_ROUTE } from "../Utils/RequestHeaderEnums";
 export const postAppointment = (data) => {
-  console.log(data, "ok");
+  
   return apiRequest({
     url: "",
     method: REQUEST_TYPES.POST,
@@ -25,7 +25,7 @@ export const deleteAppointment = (id, date) => {
 };
 
 export const updateAppointment = (data) => {
-  console.log("update", data);
+ 
   return apiRequest({
     url: "",
     method: REQUEST_TYPES.PUT,
