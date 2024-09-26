@@ -1,0 +1,12 @@
+.days {
+    display: flex;
+    padding: 0px 20px;
+    text-align: center;
+}
+@media screen and (max-width:576px) 
+{
+    .days
+    {
+        padding: 0px 10px;
+    }
+}

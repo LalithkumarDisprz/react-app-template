@@ -1,0 +1,55 @@
+@import "./Variables.scss";
+
+@mixin button-flex {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+@mixin button-style {
+    padding: 10px;
+    background-color: $pink;
+    color: white;
+    width: max-content;
+    border-radius: 4px
+}
+
+@mixin background {
+    background-color: $transparent-background;
+    position: fixed;
+    top: 0;
+    left: 0px;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    z-index: 6;
+}
+
+@mixin pop-up {
+    background-color: white;
+    color: black;
+    z-index: 100;
+    width: 35%;
+    padding: 30px 50px 30px 50px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    box-shadow: 0px 4px 11px $pink;
+    border-radius: 10px;
+}
+
+@mixin avatar {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+
+@mixin close-icon-position {
+    position: relative;
+    top: 0px;
+    left: 10px
+}

@@ -1,0 +1,40 @@
+@import "./style.scss";
+.scheduled-events-container
+{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    height: 200px;
+    width: 240px;
+    padding: 10px;
+    background-color: $secondary-blue;
+    border-radius: 4px;
+    font-size: 30px;
+    gap:20px;
+    .calender-icon
+    {
+        color: $grey-primary;
+    }
+    .remaining-events
+    {
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+}
+
+@media screen and (max-width:576px)
+{
+    .scheduled-events-container
+    {
+        width:140px;
+        height: 130px;
+        padding: 5px;
+        font-size: 16px;
+        gap:10px;
+       .remaining-events
+        {
+          font-size: 14px;
+        }
+    }
+}

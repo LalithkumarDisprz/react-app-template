@@ -1,0 +1,63 @@
+@import "./style.scss";
+
+.error-dialogue-box-container {
+  @include pop-up;
+  position: fixed;
+  border: 1px solid $black-shadow;
+  align-items: center;
+  top: 350px;
+  width: 30%;
+  left: 585px;
+  border-radius: 6px;
+  box-shadow: 0px 4px 6px $red-shadow;
+  padding: 0;
+
+  .dialogue-box-header {
+    padding: 10px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    font-size: 18px;
+    font-weight: 600;
+    // color: #f21a06;
+    background-color: #dd4e41;
+    width: 100%;
+  }
+
+  .error-dialogue-box-pop-up {
+    padding: 30px 50px 30px 50px;
+
+    p {
+      border: 1px solid transparent;
+      border-radius: 4px;
+      padding: 5px 10px 5px 10px;
+      width: max-content;
+      
+    }
+
+    .error-ok-button {
+      @include button-style;
+      background-color: $primary-blue;
+
+      border-color: transparent;
+      cursor: pointer;
+    }
+  }
+}
+@media screen and (max-width:576px) {
+
+  .error-dialogue-box-container {
+    
+  left: 23px;
+  width: 90%;
+  top:260px;
+  .error-dialogue-box-pop-up
+  {
+    padding: 5px;
+    p
+    {
+    padding: 5px;
+    width:unset;
+    }
+  }
+  }
+}

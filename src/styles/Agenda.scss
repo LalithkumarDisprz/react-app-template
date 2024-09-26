@@ -1,0 +1,109 @@
+@import "./style.scss";
+.agenda-container {
+  margin-top: 10px;
+  border-radius: 4px;
+  text-align: center;
+  .agenda-title {
+    padding: 5px;
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .agenda-events-appointments-container {
+    display: flex;
+    .events-container {
+      padding: 15px;
+      height: 60vh;
+      overflow-y: auto;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 75%;
+      .no-events {
+        position: relative;
+        width: 80%;
+        height: 100%;
+        left: 100px;
+      }
+    }
+    .scheduled-events-display {
+      width: 25%;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      .view-description-container {
+        margin-top: 20px;
+        padding: 20px;
+        box-shadow: 0px 2px 3px $black-shadow;
+        width: 250px;
+        border-radius: 4px;
+      }
+      .display-attachment-conatiner {
+        margin-top: 10px;
+        border: 1px solid transparent;
+        box-shadow: 0px 2px 3px $black-shadow;
+        padding: 5px;
+        width: 240px;
+       
+
+        a {
+          color: black;
+          text-decoration: none;
+        }
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+@media screen and (max-width: 576px) {
+  .agenda-container {
+    .agenda-events-appointments-container {
+      .events-container {
+        padding: 5px;
+        width: 65%;
+        gap: 10px;
+        .no-events
+        {
+          width: 95%;
+          height: 80%;
+          top: 20px;
+          left:0px;
+        }
+        .event-card-container {
+          padding: 5px;
+          .events-card {
+            font-size: 14px;
+          }
+        }
+      }
+      
+      .scheduled-events-display {
+        width: 35%;
+        margin-left: 15px;
+        .display-attachment-conatiner
+        {
+          width:150px;
+          font-size: 14px;
+
+        }
+        .view-description-container {
+          padding: 10px;
+          width: 150px;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+  ::-webkit-scrollbar {
+    display: none;
+  }
+}

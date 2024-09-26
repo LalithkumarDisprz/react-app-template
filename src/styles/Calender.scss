@@ -1,0 +1,75 @@
+// @import "./Variables.scss";
+@import "./style.scss";
+
+.side-bar {
+    position: fixed;
+    // position: relative;
+    top: 100px;
+    height: 100%;
+
+    .create-event-button {
+        position: absolute;
+        top: 10px;
+        left: 105px;
+
+        // right: 20px;
+        .create-icon {
+            @include button-flex;
+            gap: 10px;
+            align-items: center;
+            color: white;
+            border: 1px solid transparent;
+            // background-image:$background-image;
+            background-color: $purple;
+            border-radius: 4px;
+            padding: 10px;
+            // height:30px;
+            // width: 70px;
+        }
+    }
+
+    .calender-container {
+        // margin-top:150px;
+        margin-top: 60px;
+        max-width: 320px;
+        display: flex;
+        // background-color: $calender-background;
+        background-color: white;
+        // left:0px;
+        color: white;
+        // height: 400px;
+
+        padding-bottom: 10px;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0px 4px 11px $black-shadow;
+
+        .calender-header {
+            font-size: 14px;
+            display: flex;
+            // background-color: $calender-header;
+            // background-image: $background-image;
+            background-color: $purple;
+            flex-direction: column;
+            align-items: center;
+            padding-bottom: 10px;
+            padding-top: 10px;
+
+            .button-flex {
+                display: flex;
+                flex-direction: row;
+            }
+
+            .icon-flex {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                text-align: center;
+                justify-content: center;
+                width: 100%;
+                height: 30px;
+                gap: 5px;
+            }
+        }
+    }
+}

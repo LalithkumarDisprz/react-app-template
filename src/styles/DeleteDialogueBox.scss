@@ -1,0 +1,50 @@
+@import "./style.scss";
+
+.confirmation-box-background {
+  @include background;
+
+  .display-pop-up {
+    @include pop-up;
+    box-shadow: 0px 3px 7px $black-shadow;
+
+    .confirmation-button-flex {
+      @include button-flex;
+      justify-content: center;
+
+      .confirmation-button {
+        @include button-style;
+        border: 1px solid $grey;
+        background-color: #fff;
+        color: black;
+
+        width: 35%;
+
+        &:hover {
+          cursor: pointer;
+          border-color: $blue;
+          background-color: $button-hover;
+          color: $blue;
+        }
+        &.add-color {
+          background-image: $red-background;
+          color: #fff;
+          border: 1px solid $red-secondary;
+          &:hover {
+            cursor: pointer;
+            background-image: $black-background;
+            border-color: transparent;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .confirmation-box-background {
+    .display-pop-up {
+      padding: 20px;
+      width: unset;
+    }
+  }
+}

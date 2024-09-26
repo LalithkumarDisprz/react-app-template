@@ -1,0 +1,14 @@
+@import './style.scss';
+
+pre{
+    font-family:Arial;
+    font-size: 14px;
+    white-space: pre-wrap;
+    text-align: left;
+}
+
+@media screen and (max-width:576px) {
+    pre{
+        font-size: 12px;;
+    }
+}

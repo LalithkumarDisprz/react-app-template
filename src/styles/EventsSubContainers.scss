@@ -1,0 +1,64 @@
+@import "./style.scss";
+
+.card-flex {
+  display: flex;
+  flex-direction: row;
+  font-size: 12px;
+  height: 60px;
+  color: grey;
+  .events-time {
+    position: relative;
+    right: 10px;
+    bottom: 5px;
+  }
+
+  .circle-hover {
+    color: $overlay-blue;
+  }
+  .card {
+    color: black;
+    background-image: linear-gradient(
+      to right,
+      #777 10%,
+      rgba(255, 255, 255, 0) 0%
+    );
+    background-position: top;
+    background-size: 8px 1px;
+    background-repeat: repeat-x;
+    width: 95%;
+    position: absolute;
+    left: 50px;
+    height: 60px;
+    font-size: 14px;
+
+    .current-time-line {
+      position: absolute;
+      border-top: 2px solid $overlay-blue;
+      width: 100%;
+      z-index: 5;
+
+      &::before {
+        content: "";
+        background-color: $overlay-blue;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        margin-top: -7px;
+        margin-left: -6px;
+      }
+    }
+    .current-time-line-hide {
+      z-index: 3;
+    }
+  }
+}
+@media screen and (max-width: 576px) {
+  .card-flex {
+    .card {
+      width: 82%;
+    }
+  }
+}
